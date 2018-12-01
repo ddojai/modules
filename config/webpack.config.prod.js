@@ -376,13 +376,12 @@ module.exports = {
           {
             test: sassRegex,
             exclude: sassModuleRegex,
-            loader: getStyleLoaders(
-              {
-                importLoaders: 2,
-                sourceMap: shouldUseSourceMap,
-              },
-              'sass-loader'
-            ),
+            use: getStyleLoaders({ importLoaders: 2 }).concat({
+              loader: require.resolve('sass-loader'),
+              options: {
+                includePaths: [paths.appSrc + '/styles']
+              }
+            }),
             // Don't consider CSS imports dead code even if the
             // containing package claims to have no side effects.
             // Remove this when webpack adds a warning or an error for this.
