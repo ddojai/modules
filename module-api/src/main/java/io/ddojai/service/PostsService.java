@@ -1,8 +1,8 @@
 package io.ddojai.service;
 
+import io.ddojai.domain.Posts;
 import io.ddojai.repository.PostsRepository;
 import io.ddojai.dto.PostsMainResponseDto;
-import io.ddojai.dto.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +16,8 @@ public class PostsService {
     private PostsRepository postsRepository;
 
     @Transactional
-    public Long save(PostsSaveRequestDto dto){
-        return postsRepository.save(dto.toEntity()).getId();
+    public Posts save(Posts posts){
+        return postsRepository.save(posts);
     }
 
     @Transactional(readOnly = true)
