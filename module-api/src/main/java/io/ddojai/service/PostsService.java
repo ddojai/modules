@@ -26,4 +26,9 @@ public class PostsService {
                 .map(PostsMainResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public Posts findById(Long id){
+        return postsRepository.findById(id).orElse(null);
+    }
 }

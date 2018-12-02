@@ -8,33 +8,36 @@ import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Log
 @RestController
+@RequestMapping("/api/*")
 @AllArgsConstructor
-public class WebRestController {
+@Log
+public class PostsRestController {
 
     private PostsService postsService;
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "HelloWorld";
-    }
-
-    @GetMapping("/")
-    public ResponseEntity<List<PostsMainResponseDto>> main() {
+    @GetMapping("/posts")
+    public ResponseEntity<List<PostsMainResponseDto>> list() {
         List<PostsMainResponseDto> posts = postsService.findAllDesc();
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
+    @GetMapping("/posts/{id}")
+    public ResponseEntity<PostsMainResponseDto> read(@PathVariable("id")Long id) throws ClassNotFoundException {
+        log.info("id: " + id);
+        Posts posts = postsService.findById(id);
+        if (posts == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new PostsMainResponseDto(posts), HttpStatus.OK);
+    }
+
     @PostMapping("/posts")
-    public ResponseEntity<PostsMainResponseDto> savePosts(@RequestBody PostsSaveRequestDto dto) {
+    public ResponseEntity<PostsMainResponseDto> write(@RequestBody PostsSaveRequestDto dto) {
         log.info("" + dto);
         Posts posts = postsService.save(dto.toEntity());
         return new ResponseEntity<>(new PostsMainResponseDto(posts), HttpStatus.CREATED);
