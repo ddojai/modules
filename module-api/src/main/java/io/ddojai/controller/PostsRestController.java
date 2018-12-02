@@ -6,6 +6,7 @@ import io.ddojai.dto.PostsSaveRequestDto;
 import io.ddojai.service.PostsService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class PostsRestController {
 
     @GetMapping("/posts/{id}")
     public ResponseEntity<PostsMainResponseDto> read(@PathVariable("id")Long id) throws ClassNotFoundException {
-        log.info("id: " + id);
+        log.info("read id: " + id);
         Posts posts = postsService.findById(id);
         if (posts == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,8 +39,19 @@ public class PostsRestController {
 
     @PostMapping("/posts")
     public ResponseEntity<PostsMainResponseDto> write(@RequestBody PostsSaveRequestDto dto) {
-        log.info("" + dto);
+        log.info("write dto :" + dto);
         Posts posts = postsService.save(dto.toEntity());
         return new ResponseEntity<>(new PostsMainResponseDto(posts), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/posts/{id}")
+    public ResponseEntity<Object> remove(@PathVariable("id") Long id) {
+        log.info("remove id: " + id);
+        try {
+            postsService.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
