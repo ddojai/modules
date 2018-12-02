@@ -42,4 +42,8 @@ public class Posts extends BaseTimeEntity {
         if (posts.getTags() != null)
             this.tags = posts.getTags();
     }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

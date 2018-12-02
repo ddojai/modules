@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/*")
@@ -27,7 +28,7 @@ public class PostsRestController {
     private PostsService postsService;
 
     @GetMapping("/posts")
-    public ResponseEntity<Page<PostsMainResponseDto>> list(@RequestParam(defaultValue = "1") String page) {
+    public ResponseEntity<List<PostsMainResponseDto>> list(@RequestParam(defaultValue = "1") String page) {
         Pageable pageable;
         try {
             pageable = PageRequest.of(Integer.parseInt(page) - 1, 10, Sort.Direction.DESC, "id");
@@ -35,11 +36,22 @@ public class PostsRestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         Page<Posts> pagePosts = postsService.findAll(pageable);
+        Page<PostsMainResponseDto> pageDto = pagePosts.map(posts -> {
+            String content;
+            if (posts.getContent().length() >= 200) {
+                StringBuilder sb = new StringBuilder(posts.getContent());
+                content = sb.substring(0, 200);
+                content += "...";
+                posts.setContent(content);
+            }
+            return new PostsMainResponseDto(posts);
+        });
+        List<PostsMainResponseDto> dtoList = pageDto.getContent();
 
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Last-Page", String.valueOf(pagePosts.getTotalPages()));
 
-        return new ResponseEntity<>(pagePosts.map(PostsMainResponseDto::new), responseHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(dtoList, responseHeaders, HttpStatus.OK);
     }
 
     @GetMapping("/posts/{id}")
