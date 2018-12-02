@@ -7,12 +7,16 @@ import io.ddojai.service.PostsService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/*")
@@ -23,13 +27,23 @@ public class PostsRestController {
     private PostsService postsService;
 
     @GetMapping("/posts")
-    public ResponseEntity<List<PostsMainResponseDto>> list() {
-        List<PostsMainResponseDto> posts = postsService.findAllDesc();
-        return new ResponseEntity<>(posts, HttpStatus.OK);
+    public ResponseEntity<Page<PostsMainResponseDto>> list(@RequestParam(defaultValue = "1") String page) {
+        Pageable pageable;
+        try {
+            pageable = PageRequest.of(Integer.parseInt(page) - 1, 10, Sort.Direction.DESC, "id");
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        Page<Posts> pagePosts = postsService.findAll(pageable);
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Last-Page", String.valueOf(pagePosts.getTotalPages()));
+
+        return new ResponseEntity<>(pagePosts.map(PostsMainResponseDto::new), responseHeaders, HttpStatus.OK);
     }
 
     @GetMapping("/posts/{id}")
-    public ResponseEntity<PostsMainResponseDto> read(@PathVariable("id")Long id) throws ClassNotFoundException {
+    public ResponseEntity<PostsMainResponseDto> read(@PathVariable("id") Long id) {
         log.info("read id: " + id);
         Posts posts = postsService.findById(id);
         if (posts == null) {
@@ -58,7 +72,7 @@ public class PostsRestController {
     }
 
     @PatchMapping("/posts/{id}")
-    public ResponseEntity<PostsMainResponseDto> update(@PathVariable("id")Long id, @RequestBody PostsSaveRequestDto dto) {
+    public ResponseEntity<PostsMainResponseDto> update(@PathVariable("id") Long id, @RequestBody PostsSaveRequestDto dto) {
         log.info("patch dto :" + dto);
 
         Posts posts = postsService.patch(id, dto.toEntity());
