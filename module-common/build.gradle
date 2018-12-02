@@ -1,15 +1,7 @@
-plugins {
-    id 'java'
-}
-
-version 'unspecified'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
+bootJar { enabled = false }
+jar { enabled = true }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    runtime('com.h2database:h2')
 }
