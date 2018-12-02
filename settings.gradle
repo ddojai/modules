@@ -1,2 +1,4 @@
 rootProject.name = 'board'
+include 'module-api'
+include 'module-common'
 
