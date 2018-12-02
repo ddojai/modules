@@ -56,7 +56,7 @@ public class PostsRestController {
     }
 
     @PatchMapping("/posts/{id}")
-    public ResponseEntity<PostsMainResponseDto> patch(@PathVariable("id")Long id, @RequestBody PostsSaveRequestDto dto) {
+    public ResponseEntity<PostsMainResponseDto> update(@PathVariable("id")Long id, @RequestBody PostsSaveRequestDto dto) {
         log.info("patch dto :" + dto);
 
         Posts posts = postsService.patch(id, dto.toEntity());
