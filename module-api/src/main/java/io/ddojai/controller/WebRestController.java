@@ -28,8 +28,9 @@ public class WebRestController {
     }
 
     @GetMapping("/")
-    public List<PostsMainResponseDto> main() {
-        return postsService.findAllDesc();
+    public ResponseEntity<List<PostsMainResponseDto>> main() {
+        List<PostsMainResponseDto> posts = postsService.findAllDesc();
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     @PostMapping("/posts")
