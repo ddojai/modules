@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -22,9 +24,13 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @ElementCollection
+    private List<String> tags = new ArrayList<>();
+
     @Builder
-    public Posts(String title, String content) {
+    public Posts(String title, String content, List<String> tags) {
         this.title = title;
         this.content = content;
+        this.tags = tags;
     }
 }
