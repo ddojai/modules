@@ -3,6 +3,7 @@ package io.ddojai.dto;
 import io.ddojai.domain.Posts;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -11,8 +12,11 @@ import java.util.List;
 @ToString
 public class PostsSaveRequestDto {
 
+    @NotNull
     private String title;
+    @NotNull
     private String content;
+    @NotNull
     private List<String> tags;
 
     @Builder

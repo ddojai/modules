@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,8 +39,9 @@ public class PostsRestController {
     }
 
     @PostMapping("/posts")
-    public ResponseEntity<PostsMainResponseDto> write(@RequestBody PostsSaveRequestDto dto) {
+    public ResponseEntity<PostsMainResponseDto> write(@RequestBody @Valid PostsSaveRequestDto dto) {
         log.info("write dto :" + dto);
+
         Posts posts = postsService.save(dto.toEntity());
         return new ResponseEntity<>(new PostsMainResponseDto(posts), HttpStatus.CREATED);
     }
