@@ -1,6 +1,5 @@
-package io.ddojai.domain.posts;
+package io.ddojai.domain;
 
-import io.ddojai.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

@@ -8,3 +8,7 @@
 *.iml
 *.ipr
 /out/
+
+### module
+module-api/out/
+module-common/out/

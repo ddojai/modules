@@ -1,6 +1,6 @@
 package io.ddojai.posts;
 
-import io.ddojai.domain.posts.Posts;
+import io.ddojai.domain.Posts;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

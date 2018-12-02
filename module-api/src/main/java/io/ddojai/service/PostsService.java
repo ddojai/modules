@@ -1,6 +1,6 @@
 package io.ddojai.service;
 
-import io.ddojai.domain.posts.PostsRepository;
+import io.ddojai.repository.PostsRepository;
 import io.ddojai.posts.PostsMainResponseDto;
 import io.ddojai.posts.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
