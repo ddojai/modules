@@ -12,12 +12,14 @@ import java.util.Optional;
 public class PostsMainResponseDto {
     private Long id;
     private String title;
+    private String content;
     private List<String> tags;
     private String createdDate;
 
     public PostsMainResponseDto(Posts entity) {
         id = entity.getId();
         title = entity.getTitle();
+        content = entity.getContent();
         tags = entity.getTags();
         createdDate = toStringDateTime(entity.getCreatedDate());
     }

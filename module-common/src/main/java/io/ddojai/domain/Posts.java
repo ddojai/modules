@@ -33,4 +33,13 @@ public class Posts extends BaseTimeEntity {
         this.content = content;
         this.tags = tags;
     }
+
+    public void patch(Posts posts) {
+        if (posts.getTitle() != null)
+            this.title = posts.getTitle();
+        if (posts.getContent() != null)
+            this.content = posts.getContent();
+        if (posts.getTags() != null)
+            this.tags = posts.getTags();
+    }
 }

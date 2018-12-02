@@ -54,4 +54,16 @@ public class PostsRestController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PatchMapping("/posts/{id}")
+    public ResponseEntity<PostsMainResponseDto> patch(@PathVariable("id")Long id, @RequestBody PostsSaveRequestDto dto) {
+        log.info("patch dto :" + dto);
+
+        Posts posts = postsService.patch(id, dto.toEntity());
+        if (posts == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new PostsMainResponseDto(posts), HttpStatus.OK);
+    }
+
 }

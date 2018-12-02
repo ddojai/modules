@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -36,4 +37,17 @@ public class PostsService {
     public void deleteById(Long id){
         postsRepository.deleteById(id);
     }
+
+
+    @Transactional
+    public Posts patch(Long id, Posts posts) {
+        Optional<Posts> optionalPosts = postsRepository.findById(id);
+        if (optionalPosts.isPresent()) {
+            Posts patchedPosts = optionalPosts.get();
+            patchedPosts.patch(posts);
+            return postsRepository.save(patchedPosts);
+        }
+        return null;
+    }
+
 }
