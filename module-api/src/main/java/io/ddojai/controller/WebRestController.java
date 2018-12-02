@@ -1,7 +1,7 @@
 package io.ddojai.controller;
 
-import io.ddojai.posts.PostsMainResponseDto;
-import io.ddojai.posts.PostsSaveRequestDto;
+import io.ddojai.dto.PostsMainResponseDto;
+import io.ddojai.dto.PostsSaveRequestDto;
 import io.ddojai.service.PostsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,7 @@ public class WebRestController {
     }
 
     @PostMapping("/posts")
-    public Long savePosts(@RequestBody PostsSaveRequestDto dto){
+    public Long savePosts(@RequestBody PostsSaveRequestDto dto) {
         return postsService.save(dto);
     }
 }

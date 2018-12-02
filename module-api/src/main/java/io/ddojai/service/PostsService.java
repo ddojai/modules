@@ -1,8 +1,8 @@
 package io.ddojai.service;
 
 import io.ddojai.repository.PostsRepository;
-import io.ddojai.posts.PostsMainResponseDto;
-import io.ddojai.posts.PostsSaveRequestDto;
+import io.ddojai.dto.PostsMainResponseDto;
+import io.ddojai.dto.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

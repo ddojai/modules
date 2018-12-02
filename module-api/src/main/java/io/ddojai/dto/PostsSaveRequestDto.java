@@ -1,4 +1,4 @@
-package io.ddojai.posts;
+package io.ddojai.dto;
 
 import io.ddojai.domain.Posts;
 import lombok.Builder;
