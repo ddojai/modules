@@ -14,7 +14,7 @@ const PostItem = ({ title, content, createdDate, tags, id }) => {
   return (
     <div className={cx("post-item")}>
       <h2>
-        <Link to={`/posts/${id}`}>{title}</Link>
+        <Link to={`/post/${id}`}>{title}</Link>
       </h2>
       <div className={cx("date")}>{createdDate}</div>
       <p>{content}</p>
