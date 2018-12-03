@@ -41,3 +41,17 @@ insert into posts (title, content, created_date, modified_date) values ('테스�
 
 insert into posts_tags (posts_id, tags) values (1, '태그1');
 insert into posts_tags (posts_id, tags) values (2, '태그2');
+insert into posts_tags (posts_id, tags) values (3, '태그1');
+insert into posts_tags (posts_id, tags) values (4, '태그1');
+insert into posts_tags (posts_id, tags) values (5, '태그1');
+insert into posts_tags (posts_id, tags) values (6, '태그1');
+insert into posts_tags (posts_id, tags) values (7, '태그1');
+insert into posts_tags (posts_id, tags) values (8, '태그1');
+insert into posts_tags (posts_id, tags) values (9, '태그1');
+insert into posts_tags (posts_id, tags) values (10, '태그1');
+insert into posts_tags (posts_id, tags) values (11, '태그1');
+insert into posts_tags (posts_id, tags) values (12, '태그1');
+insert into posts_tags (posts_id, tags) values (13, '태그1');
+insert into posts_tags (posts_id, tags) values (14, '태그1');
+insert into posts_tags (posts_id, tags) values (15, '태그1');
+insert into posts_tags (posts_id, tags) values (16, '태그1');

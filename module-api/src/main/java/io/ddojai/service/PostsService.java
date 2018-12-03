@@ -25,6 +25,11 @@ public class PostsService {
         return postsRepository.findAll(page);
     }
 
+    @Transactional(readOnly = true)
+    public Page<Posts> retrieveByTag(String tag, Pageable page) {
+        return postsRepository.retrieveByTag(tag, page);
+    }
+
     @Transactional
     public Posts findById(Long id){
         return postsRepository.findById(id).orElse(null);

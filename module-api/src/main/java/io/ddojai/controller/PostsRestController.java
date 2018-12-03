@@ -28,14 +28,20 @@ public class PostsRestController {
     private PostsService postsService;
 
     @GetMapping("/posts")
-    public ResponseEntity<List<PostsMainResponseDto>> list(@RequestParam(defaultValue = "1") String page) {
+    public ResponseEntity<List<PostsMainResponseDto>> list(@RequestParam(defaultValue = "1") String page, String tag) {
         Pageable pageable;
         try {
             pageable = PageRequest.of(Integer.parseInt(page) - 1, 10, Sort.Direction.DESC, "id");
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        Page<Posts> pagePosts = postsService.findAll(pageable);
+
+        Page<Posts> pagePosts;
+        if (tag == null) {
+            pagePosts = postsService.findAll(pageable);
+        } else {
+            pagePosts = postsService.retrieveByTag(tag, pageable);
+        }
         Page<PostsMainResponseDto> pageDto = pagePosts.map(posts -> {
             String content;
             if (posts.getContent().length() >= 200) {
