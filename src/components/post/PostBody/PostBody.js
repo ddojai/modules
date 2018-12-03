@@ -4,10 +4,10 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const PostBody = () => (
+const PostBody = ({content}) => (
   <div className={cx('post-body')}>
     <div className={cx('paper')}>
-      내용
+      {content}
     </div>
   </div>
 );
