@@ -5,30 +5,46 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-const PostItem = () => {
+const PostItem = ({ title, content, createdDate, tags, id }) => {
+  const tagList = tags.map(tag => (
+    <Link key={tag} to={`/tag/${tag}`}>
+      #{tag}
+    </Link>
+  ));
   return (
     <div className={cx("post-item")}>
       <h2>
-        <a>타이틀</a>
+        <Link to={`/posts/${id}`}>{title}</Link>
       </h2>
-      <div className={cx("date")}>2017-10-24</div>
-      <p>내용</p>
-      <div className={cx("tags")}>
-        <a>#태그</a>
-        <a>#태그</a>
-        <a>#태그</a>
-      </div>
+      <div className={cx("date")}>{createdDate}</div>
+      <p>{content}</p>
+      <div className={cx("tags")}>{tagList}</div>
     </div>
   );
 };
 
-const PostList = () => (
-  <div className={cx('post-list')}>
-    <PostItem/>
-    <PostItem/>
-    <PostItem/>
-    <PostItem/>
-  </div>
-);
+const PostList = ({ posts }) => {
+  const postList = posts.map(
+    (post) => {
+      const { id, title, content, createdDate, tags } = post.toJS();
+      return (
+        <PostItem
+          title={title}
+          content={content}
+          createdDate={createdDate}
+          tags={tags}
+          key={id}
+          id={id}
+        />
+      )
+    }
+  )
+
+  return (
+    <div className={cx("post-list")}>
+      {postList}
+    </div>
+  );
+};
 
 export default PostList;
