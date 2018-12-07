@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PageTemplate from "components/common/PageTemplate";
-import SocialLogin from "components/auth/SocialLogin";
+import LoginContainers from "containers/auth/LoginContainers";
 
 const AuthPage = () => {
   return (
     <PageTemplate>
-      <SocialLogin/>
+      <LoginContainers/>
     </PageTemplate>
   );
 };

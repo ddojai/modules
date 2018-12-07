@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ListPage, PostPage, EditorPage, NotFoundPage, AuthPage, OAuth2RedirectPage } from 'pages';
+import Base from "containers/common/Base";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/oauth2/redirect" component={OAuth2RedirectPage}/>
         <Route component={NotFoundPage}/>
       </Switch>
+      <Base/>
     </div>
   );
 };

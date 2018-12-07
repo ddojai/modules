@@ -13,7 +13,7 @@ class Post extends Component {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   componentDidMount() {
     this.initialize();
