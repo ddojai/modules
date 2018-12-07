@@ -1,5 +1,5 @@
 import React from "react";
-import PageTemplate from "components/common/PageTemplate/PageTemplate";
+import PageTemplate from "components/common/PageTemplate";
 import ListWrapper from "components/list/ListWrapper/ListWrapper";
 import ListContainer from "containers/list/ListContainer";
 
