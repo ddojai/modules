@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./SocialLogin.scss";
 import classNames from "classnames/bind";
-import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL } from "constants/index";
+import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL } from "commonConstants";
 import fbLogo from "img/fb-logo.png";
 import googleLogo from "img/google-logo.png";
 
