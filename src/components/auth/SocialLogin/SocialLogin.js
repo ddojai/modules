@@ -15,18 +15,16 @@ class SocialLogin extends Component {
           <h1 className={cx("login-title")}>Login to SpringSocial</h1>
           <div className="social-login">
             <a
-              className="btn btn-block social-btn google"
-              // className={cx("btn", "block", "social-btn", "google")}
+              className={cx("btn", "block", "social-btn", "google")}
               href={GOOGLE_AUTH_URL}
             >
-              <img src={googleLogo} alt="Google" /> Log in with Google
+              <img src={googleLogo} alt="Google" /> Google
             </a>
             <a
-            // className={cx("btn", "block", "social-btn", "facebook")}
-              className="btn btn-block social-btn facebook"
+              className={cx("btn", "block", "social-btn", "facebook")}
               href={FACEBOOK_AUTH_URL}
             >
-              <img src={fbLogo} alt="Facebook" /> Log in with Facebook
+              <img src={fbLogo} alt="Facebook" /> Facebook
             </a>
           </div>
         </div>

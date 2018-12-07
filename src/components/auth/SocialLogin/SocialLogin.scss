@@ -48,16 +48,19 @@
       background-color: transparent;
       border-color: #e8e8e8;
       outline: none;
-      &.btn-block {
+
+      &.block {
         display: block;
         width: 100%;
       }
+
       &.social-btn {
         margin-bottom: 15px;
         font-weight: 400;
         font-size: 16px;
       }
-      &.social-btn img {
+
+      img {
         height: 32px;
         float: left;
         margin-top: 10px;
