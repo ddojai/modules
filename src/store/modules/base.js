@@ -7,15 +7,16 @@ import * as api from 'lib/api';
 // action types
 const SHOW_MODAL = "base/SHOW_MODAL";
 const HIDE_MODAL = "base/HIDE_MODAL";
-// const LOGIN = 'base/LOGIN';
 const LOGOUT = 'base/LOGOUT';
 const CHECK_LOGIN = 'base/CHECK_LOGIN';
+const TEMP_LOGIN = 'base/TEMP_LOGIN';
 
 // action creators
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
 export const checkLogin = createAction(CHECK_LOGIN, api.getUser);
 export const logout = createAction(LOGOUT);
+export const tempLogin = createAction(TEMP_LOGIN);
 
 
 // initial state
@@ -53,5 +54,9 @@ export default handleActions({
     return state
       .set("currentUser", Map({}))
       .set("authenticated", false)
+  },
+  [TEMP_LOGIN]: (state, action) => {
+    return state
+      .set("authenticated", true)
   }
 }, initialState);

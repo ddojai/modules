@@ -11,7 +11,11 @@ class Base extends Component {
   initialize = async () => {
     const { BaseActions } = this.props;
     if (localStorage.getItem(ACCESS_TOKEN)) {
+      BaseActions.tempLogin();
       BaseActions.checkLogin();
+    } else {
+      localStorage.removeItem(ACCESS_TOKEN);
+      BaseActions.logout();
     }
   };
 
