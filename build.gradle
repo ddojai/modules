@@ -26,7 +26,13 @@ subprojects {
 
     dependencies {
         compileOnly('org.projectlombok:lombok')
-        testCompile('org.springframework.boot:spring-boot-starter-test')
+        compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+
+        implementation('org.springframework.boot:spring-boot-starter-security')
+        compile group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.1.2.RELEASE'
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testImplementation('org.springframework.security:spring-security-test')
     }
 }
 
