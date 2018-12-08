@@ -14,7 +14,6 @@ class Base extends Component {
       BaseActions.tempLogin();
       BaseActions.checkLogin();
     } else {
-      localStorage.removeItem(ACCESS_TOKEN);
       BaseActions.logout();
     }
   };
