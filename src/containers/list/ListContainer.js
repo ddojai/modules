@@ -13,7 +13,7 @@ class ListContainer extends Component {
       page,
       tag
     })
-  }
+  };
 
   componentDidMount() {
     this.getPostList();

@@ -17,7 +17,11 @@ const PostItem = ({ title, content, createdDate, tags, id }) => {
         <Link to={`/post/${id}`}>{title}</Link>
       </h2>
       <div className={cx("date")}>{createdDate}</div>
-      <p>{content}</p>
+      <p>{
+        content.split('\n').map( (line, key) => {
+          return (<span key={key}>{line}<br/></span>)
+        })
+      }</p>
       <div className={cx("tags")}>{tagList}</div>
     </div>
   );
@@ -38,7 +42,7 @@ const PostList = ({ posts }) => {
         />
       )
     }
-  )
+  );
 
   return (
     <div className={cx("post-list")}>

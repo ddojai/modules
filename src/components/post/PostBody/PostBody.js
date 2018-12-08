@@ -4,12 +4,19 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const PostBody = ({content}) => (
-  <div className={cx('post-body')}>
-    <div className={cx('paper')}>
-      {content}
+const PostBody = ({ content }) => {
+  let contentString = String(content);
+  return (
+    <div className={cx('post-body')}>
+      <div className={cx('paper')}>
+        {
+          contentString.split('\n').map( (line, key) => {
+            return (<span key={key}>{line}<br/></span>)
+          })
+        }
+      </div>
     </div>
-  </div>
-);
+  )
+};
 
 export default PostBody;

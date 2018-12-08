@@ -8,7 +8,7 @@ class EditorPaneContainer extends Component {
   handleChangeInput = ({name, value}) => {
     const { EditorActions } = this.props;
     EditorActions.changeInput({name, value});
-  }
+  };
 
   render() {
     const {title, tags, content} = this.props;
