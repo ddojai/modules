@@ -12,3 +12,6 @@
 ### module
 module-api/out/
 module-common/out/
+
+### config
+application-*.yml
