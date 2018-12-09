@@ -1,9 +1,11 @@
 package io.ddojai.controller;
 
 import io.ddojai.domain.Posts;
+import io.ddojai.domain.User;
 import io.ddojai.dto.PostsMainResponseDto;
 import io.ddojai.dto.PostsSaveRequestDto;
 import io.ddojai.service.PostsService;
+import io.ddojai.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -26,6 +28,7 @@ import java.util.List;
 public class PostsRestController {
 
     private PostsService postsService;
+    private UserService userService;
 
     @GetMapping("/posts")
     public ResponseEntity<List<PostsMainResponseDto>> list(@RequestParam(defaultValue = "1") String page, String tag) {
@@ -73,8 +76,13 @@ public class PostsRestController {
     @PostMapping("/posts")
     public ResponseEntity<PostsMainResponseDto> write(@RequestBody @Valid PostsSaveRequestDto dto) {
         log.info("write dto :" + dto);
-
-        Posts posts = postsService.save(dto.toEntity());
+        User user = userService.findById(Long.parseLong(dto.getUserId()));
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Posts posts = dto.toEntity();
+        posts.setUser(user);
+        posts = postsService.save(posts);
         return new ResponseEntity<>(new PostsMainResponseDto(posts), HttpStatus.CREATED);
     }
 

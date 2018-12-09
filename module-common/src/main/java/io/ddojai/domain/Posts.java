@@ -34,6 +34,10 @@ public class Posts extends BaseTimeEntity {
         this.tags = tags;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
     public void patch(Posts posts) {
         if (posts.getTitle() != null)
             this.title = posts.getTitle();
@@ -45,5 +49,9 @@ public class Posts extends BaseTimeEntity {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

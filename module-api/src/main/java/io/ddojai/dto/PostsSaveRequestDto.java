@@ -19,12 +19,7 @@ public class PostsSaveRequestDto {
     @NotNull
     private List<String> tags;
 
-    @Builder
-    public PostsSaveRequestDto(String title, String content, List<String> tags) {
-        this.title = title;
-        this.content = content;
-        this.tags = tags;
-    }
+    private String userId;
 
     public Posts toEntity() {
         return Posts.builder()
