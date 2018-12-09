@@ -48,6 +48,11 @@ export default handleActions({
       return state
         .set("currentUser", fromJS(currentUser))
         .set("authenticated", true)
+    },
+    onFailure: (state, action) => {
+      return state
+        .set("currentUser", Map({}))
+        .set("authenticated", false)
     }
   }),
   [LOGOUT]: (state, action) => {

@@ -12,7 +12,12 @@ class Base extends Component {
     const { BaseActions } = this.props;
     if (localStorage.getItem(ACCESS_TOKEN)) {
       BaseActions.tempLogin();
-      BaseActions.checkLogin();
+      await BaseActions.checkLogin();
+
+      const { authenticated } = this.props;
+      if (authenticated === false) {
+        localStorage.removeItem(ACCESS_TOKEN);
+      }
     } else {
       BaseActions.logout();
     }
@@ -34,7 +39,9 @@ class Base extends Component {
 }
 
 export default connect(
-  null,
+  (state) => ({
+    authenticated: state.base.get('authenticated')
+  }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)
   })
