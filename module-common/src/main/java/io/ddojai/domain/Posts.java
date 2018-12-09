@@ -35,7 +35,7 @@ public class Posts extends BaseTimeEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 
     public void patch(Posts posts) {
