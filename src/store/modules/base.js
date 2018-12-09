@@ -3,6 +3,7 @@ import { createAction, handleActions } from "redux-actions";
 import { Map, fromJS } from "immutable";
 import { pender } from "redux-pender";
 import * as api from 'lib/api';
+import { ACCESS_TOKEN } from "commonConstants";
 
 // action types
 const SHOW_MODAL = "base/SHOW_MODAL";
@@ -50,12 +51,15 @@ export default handleActions({
         .set("authenticated", true)
     },
     onFailure: (state, action) => {
+      console.log("onFailure");
+      localStorage.removeItem(ACCESS_TOKEN);
       return state
         .set("currentUser", Map({}))
         .set("authenticated", false)
     }
   }),
   [LOGOUT]: (state, action) => {
+    localStorage.removeItem(ACCESS_TOKEN);
     return state
       .set("currentUser", Map({}))
       .set("authenticated", false)
