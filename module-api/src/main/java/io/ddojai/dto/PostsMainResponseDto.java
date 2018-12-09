@@ -1,6 +1,7 @@
 package io.ddojai.dto;
 
 import io.ddojai.domain.Posts;
+import io.ddojai.domain.User;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class PostsMainResponseDto {
     private String title;
     private String content;
     private List<String> tags;
+    private User user;
     private String createdDate;
 
     public PostsMainResponseDto(Posts entity) {
@@ -21,6 +23,7 @@ public class PostsMainResponseDto {
         title = entity.getTitle();
         content = entity.getContent();
         tags = entity.getTags();
+        user = entity.getUser();
         createdDate = toStringDateTime(entity.getCreatedDate());
     }
 
