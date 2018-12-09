@@ -25,7 +25,7 @@ class EditorHeaderContainer extends Component {
   };
 
   handleSubmit = async() => {
-    const { title, content, tags, EditorActions, history, location } = this.props;
+    const { title, content, tags, EditorActions, history, location, currentUser } = this.props;
     const post = {
       title,
       content,
@@ -40,14 +40,15 @@ class EditorHeaderContainer extends Component {
         return;
       }
 
-      await EditorActions.writePost(post);
+      const userId = currentUser.toJS().id;
+      await EditorActions.writePost({userId, ...post});
       // 페이지를 이동시킵니다. 주의: postId는 위쪽에서 레퍼런스를 만들지 않고
       // 이 자리에서 this.props.postId를 조회해야 합니다(현재 값을 불러오기 위함).
       history.push(`/post/${this.props.postId}`);
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   render() {
     const { handleGoBack, handleSubmit } = this;
@@ -67,7 +68,8 @@ export default connect(
     title: state.editor.get('title'),
     content: state.editor.get('content'),
     tags: state.editor.get("tags"),
-    postId: state.editor.get('postId')
+    postId: state.editor.get('postId'),
+    currentUser: state.base.get('currentUser')
   }),
   (dispatch) => ({
     EditorActions: bindActionCreators(editorActions, dispatch)
