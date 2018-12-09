@@ -15,3 +15,6 @@ module-common/out/
 
 ### config
 application-*.yml
+
+### https
+keystore.p12
