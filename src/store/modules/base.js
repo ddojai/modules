@@ -45,7 +45,6 @@ export default handleActions({
     type: CHECK_LOGIN,
     onSuccess: (state, action) => {
       const { data: currentUser } = action.payload;
-      console.log(currentUser);
       return state
         .set("currentUser", fromJS(currentUser))
         .set("authenticated", true)

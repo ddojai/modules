@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-const PostInfo = ({createdDate, title, tags}) => (
+const PostInfo = ({createdDate, title, tags, user}) => (
   <div className={cx("post-info")}>
     <div className={cx("info")}>
       <h1>{title}</h1>
@@ -18,6 +18,7 @@ const PostInfo = ({createdDate, title, tags}) => (
           )
         }
       </div>
+      {user && <div className={cx("writer")}>{user.name}</div>}
       <div className={cx("date")}>{createdDate}</div>
     </div>
   </div>

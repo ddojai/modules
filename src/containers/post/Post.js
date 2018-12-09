@@ -24,11 +24,11 @@ class Post extends Component {
 
     if (loading) return null;
 
-    const { title, content, createdDate, tags } = post.toJS();
-
+    const { title, content, createdDate, tags, user } = post.toJS();
+    console.log(user);
     return (
       <div>
-        <PostInfo title={title} createdDate={createdDate} tags={tags}/>
+        <PostInfo title={title} createdDate={createdDate} tags={tags} user={user}/>
         <PostBody content={content}/>
       </div>
     );
