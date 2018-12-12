@@ -1,8 +1,8 @@
 package io.ddojai;
 
 import io.ddojai.config.AppProperties;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
@@ -10,7 +10,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
 public class ApiApplication {
+    private static final String APPLICATION_LOCATIONS = "spring.config.location="
+            + "classpath:application.yml,"
+            + "/app/config/community/application-auth.yml";
+
     public static void main(String[] args) {
-        SpringApplication.run(ApiApplication.class, args);
+        new SpringApplicationBuilder(ApiApplication.class)
+                .properties(APPLICATION_LOCATIONS)
+                .run(args);
     }
 }

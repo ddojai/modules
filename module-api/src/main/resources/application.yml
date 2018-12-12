@@ -3,7 +3,7 @@ spring.profiles.active: local   # 기본 환경 선택
 spring:
   profiles:
     include:
-    - auth
+#    - auth
 #    - db
 #    - ssl
 
