@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class ApiApplication {
     private static final String APPLICATION_LOCATIONS = "spring.config.location="
             + "classpath:application.yml,"
+            + "/app/config/community/real-application.yml,"
             + "/app/config/community/application-auth.yml";
 
     public static void main(String[] args) {

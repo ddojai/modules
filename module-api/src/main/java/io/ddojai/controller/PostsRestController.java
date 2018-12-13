@@ -8,6 +8,7 @@ import io.ddojai.service.PostsService;
 import io.ddojai.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.core.env.Environment;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -108,4 +110,13 @@ public class PostsRestController {
         return new ResponseEntity<>(new PostsMainResponseDto(posts), HttpStatus.OK);
     }
 
+    private Environment env;
+
+    @GetMapping("/profile")
+    public String getProfile () {
+        log.info(Arrays.toString(env.getActiveProfiles()));
+        return Arrays.stream(env.getActiveProfiles())
+                .findFirst()
+                .orElse("");
+    }
 }
