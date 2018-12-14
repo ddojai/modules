@@ -23,13 +23,21 @@ class HeaderContainer extends Component {
 
   render() {
     const { handleRemove, handleLogout } = this;
-    const { match, authenticated } = this.props;
+    const { match, authenticated, currentUser, post } = this.props;
 
     const { id } = match.params;
+
+    let isWriter = false;
+    if (currentUser.toJS().id !== undefined && post.toJS().user !== undefined) {
+      if (currentUser.toJS().id === post.toJS().user.id) {
+          isWriter = true;
+        }
+    }
 
     return (
       <Header
         postId={id}
+        isWriter={isWriter}
         authenticated={authenticated}
         onRemove={handleRemove}
         onLogout={handleLogout}
@@ -39,6 +47,8 @@ class HeaderContainer extends Component {
 
 export default connect(
   (state) => ({
+    currentUser: state.base.get('currentUser'),
+    post: state.post.get('post'),
     authenticated: state.base.get('authenticated')
   }),
   (dispatch) => ({

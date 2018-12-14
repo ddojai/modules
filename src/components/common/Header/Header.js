@@ -6,7 +6,7 @@ import Button from "components/common/Button";
 
 const cx = classNames.bind(styles);
 
-const Header = ({ postId, authenticated, onRemove, onLogout}) => (
+const Header = ({ postId, isWriter, authenticated, onRemove, onLogout}) => (
   <header className={cx("header")}>
     <div className={cx('header-content')}>
       <div className={cx('brand')}>
@@ -14,7 +14,7 @@ const Header = ({ postId, authenticated, onRemove, onLogout}) => (
       </div>
       <div className={cx('right')}>
         {
-          authenticated && postId && [
+          isWriter && postId && [
             // flex를 유지하려고 배열 형태로 렌더링 합니다.
             <Button key="edit" theme="outline" to={`/editor?id=${postId}`}>수정</Button>,
             <Button key="remove" theme="outline" onClick={onRemove}>삭제</Button>
