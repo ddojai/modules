@@ -22,6 +22,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
 
+spring.profiles.include: ssl
 # 운영 환경
 ---
 spring.profiles: set1
