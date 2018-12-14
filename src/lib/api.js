@@ -1,6 +1,12 @@
 import axios from "axios";
 import queryString from "query-string";
 import { ACCESS_TOKEN } from "commonConstants";
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = 'https://localhost:8080';
+} else {
+  axios.defaults.baseURL = 'http://ec2-13-209-124-199.ap-northeast-2.compute.amazonaws.com';
+}
+
 
 // post
 export const getPost = id =>
