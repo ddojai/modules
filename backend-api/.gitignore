@@ -1,0 +1,6 @@
+## tsc outDir
+/dist
+
+## environment
+.env
+
