@@ -1,5 +1,5 @@
 {
-  "name": "board_front",
+  "name": "frontend-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
