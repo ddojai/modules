@@ -1,0 +1,61 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group 'io.ddojai'
+    version '0.0.4'
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly('org.projectlombok:lombok')
+        compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+        compile('org.springframework.boot:spring-boot-starter-actuator')
+
+        implementation('org.springframework.boot:spring-boot-starter-security')
+        compile group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.1.2.RELEASE'
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testImplementation('org.springframework.security:spring-security-test')
+    }
+}
+
+project(':module-common') {
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+        compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.5.1'
+        compile('org.springframework.boot:spring-boot-starter-data-jpa')
+        compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '7.0.19'
+        compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '9.0.12'
+        compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+        compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.2.RELEASE'
+        compile('com.h2database:h2')
+        compile("org.mariadb.jdbc:mariadb-java-client")
+    }
+}
+
+project(':module-api') {
+    dependencies {
+        compile project(':module-common')
+        implementation('org.springframework.boot:spring-boot-starter-web')
+    }
+}

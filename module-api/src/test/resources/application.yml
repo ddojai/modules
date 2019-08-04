@@ -1,0 +1,21 @@
+# Test
+spring:
+  profiles:
+    active: local # 기본 환경 선택
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+# local 환경
+---
+spring:
+  profiles: local
+  datasource:
+    platform: h2
+    url: jdbc:h2:tcp://localhost:9092/mem:testdb;MVCC=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
