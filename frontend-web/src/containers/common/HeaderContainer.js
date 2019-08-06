@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import Header from "components/common/Header";
-import { withRouter } from "react-router-dom";
-import * as baseActions from "store/modules/base";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { ACCESS_TOKEN } from "commonConstants";
+import React, { Component } from 'react';
+import Header from 'components/common/Header';
+import { withRouter } from 'react-router-dom';
+import * as baseActions from 'store/modules/base';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ACCESS_TOKEN } from 'commonConstants';
 import Alert from 'react-s-alert';
 
 class HeaderContainer extends Component {
   handleRemove = () => {
     const { BaseActions } = this.props;
-    BaseActions.showModal("remove");
+    BaseActions.showModal('remove');
   };
 
   handleLogout = () => {
@@ -18,7 +18,7 @@ class HeaderContainer extends Component {
 
     localStorage.removeItem(ACCESS_TOKEN);
     BaseActions.logout();
-    Alert.success("You're safely logged out!");
+    Alert.success('You\'re safely logged out!');
   };
 
   render() {
@@ -30,8 +30,8 @@ class HeaderContainer extends Component {
     let isWriter = false;
     if (currentUser.toJS().id !== undefined && post.toJS().user !== undefined) {
       if (currentUser.toJS().id === post.toJS().user.id) {
-          isWriter = true;
-        }
+        isWriter = true;
+      }
     }
 
     return (

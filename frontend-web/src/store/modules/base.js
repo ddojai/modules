@@ -1,13 +1,13 @@
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleActions } from 'redux-actions';
 
-import { Map, fromJS } from "immutable";
-import { pender } from "redux-pender";
+import { Map, fromJS } from 'immutable';
+import { pender } from 'redux-pender';
 import * as api from 'lib/api';
-import { ACCESS_TOKEN } from "commonConstants";
+import { ACCESS_TOKEN } from 'commonConstants';
 
 // action types
-const SHOW_MODAL = "base/SHOW_MODAL";
-const HIDE_MODAL = "base/HIDE_MODAL";
+const SHOW_MODAL = 'base/SHOW_MODAL';
+const HIDE_MODAL = 'base/HIDE_MODAL';
 const LOGOUT = 'base/LOGOUT';
 const CHECK_LOGIN = 'base/CHECK_LOGIN';
 const TEMP_LOGIN = 'base/TEMP_LOGIN';
@@ -46,25 +46,25 @@ export default handleActions({
     onSuccess: (state, action) => {
       const { data: currentUser } = action.payload;
       return state
-        .set("currentUser", fromJS(currentUser))
-        .set("authenticated", true)
+        .set('currentUser', fromJS(currentUser))
+        .set('authenticated', true)
     },
     onFailure: (state, action) => {
-      console.log("onFailure");
+      console.log('onFailure');
       localStorage.removeItem(ACCESS_TOKEN);
       return state
-        .set("currentUser", Map({}))
-        .set("authenticated", false)
+        .set('currentUser', Map({}))
+        .set('authenticated', false)
     }
   }),
   [LOGOUT]: (state, action) => {
     localStorage.removeItem(ACCESS_TOKEN);
     return state
-      .set("currentUser", Map({}))
-      .set("authenticated", false)
+      .set('currentUser', Map({}))
+      .set('authenticated', false)
   },
   [TEMP_LOGIN]: (state, action) => {
     return state
-      .set("authenticated", true)
+      .set('authenticated', true)
   }
 }, initialState);

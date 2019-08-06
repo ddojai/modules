@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as baseActions from "store/modules/base";
-import * as postActions from "store/modules/post";
-import AskRemoveModal from "components/modal/AskRemoveModal";
-import { withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as baseActions from 'store/modules/base';
+import * as postActions from 'store/modules/post';
+import AskRemoveModal from 'components/modal/AskRemoveModal';
+import { withRouter } from 'react-router-dom';
 
 class AskRemoveModalContainer extends Component {
   handleCancle = () => {
     const { BaseActions } = this.props;
-    BaseActions.hideModal("remove");
+    BaseActions.hideModal('remove');
   };
 
   handleConfirm = async () => {
@@ -42,7 +42,7 @@ class AskRemoveModalContainer extends Component {
 
 export default connect(
   state => ({
-    visible: state.base.getIn(["modal", "remove"])
+    visible: state.base.getIn(['modal', 'remove'])
   }),
   dispatch => ({
     BaseActions: bindActionCreators(baseActions, dispatch),

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ListPage, PostPage, EditorPage, NotFoundPage, AuthPage, OAuth2RedirectPage } from 'pages';
-import Base from "containers/common/Base";
+import Base from 'containers/common/Base';
 
 const App = () => {
   return (

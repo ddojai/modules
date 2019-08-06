@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PostInfo from "components/post/PostInfo";
-import PostBody from "components/post/PostBody";
-import * as postActions from "store/modules/post";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import PostInfo from 'components/post/PostInfo';
+import PostBody from 'components/post/PostBody';
+import * as postActions from 'store/modules/post';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class Post extends Component {
-  initialize = async() => {
+  initialize = async () => {
     const { PostActions, id } = this.props;
     try {
       await PostActions.getPost(id);

@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./PostList.scss";
-import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styles from './PostList.scss';
+import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -12,18 +12,18 @@ const PostItem = ({ title, content, createdDate, tags, user, id }) => {
     </Link>
   ));
   return (
-    <div className={cx("post-item")}>
+    <div className={cx('post-item')}>
       <h2>
         <Link to={`/post/${id}`}>{title}</Link>
       </h2>
-      <div className={cx("writer")}>{user.name}</div>
-      <div className={cx("date")}>{createdDate}</div>
+      <div className={cx('writer')}>{user.name}</div>
+      <div className={cx('date')}>{createdDate}</div>
       <p>{
         content.split('\n').map((line, key) => {
           return (<span key={key}>{line}<br/></span>)
         })
       }</p>
-      <div className={cx("tags")}>{tagList}</div>
+      <div className={cx('tags')}>{tagList}</div>
     </div>
   );
 };
@@ -47,7 +47,7 @@ const PostList = ({ posts }) => {
   );
 
   return (
-    <div className={cx("post-list")}>
+    <div className={cx('post-list')}>
       {postList}
     </div>
   );

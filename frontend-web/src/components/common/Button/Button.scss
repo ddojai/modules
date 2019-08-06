@@ -15,9 +15,11 @@
   // default: 파란색 계통
   &.default {
     background: $oc-blue-6;
+
     &:hover {
       background: $oc-blue-5;
     }
+
     &:active {
       background: $oc-blue-6;
     }
@@ -26,9 +28,11 @@
   // gray: 회색버튼
   &.gray {
     background: $oc-gray-7;
+
     &:hover {
       background: $oc-gray-6;
     }
+
     &:active {
       background: $oc-gray-7;
     }
@@ -38,10 +42,12 @@
   &.outline {
     border: 2px solid white;
     border-radius: 2px;
+
     &:hover {
       background: white;
       color: $oc-blue-6;
     }
+
     &:active {
       background: rgba(255, 255, 255, 0.85);
       border: 2px solid rgba(255, 255, 255, 0.85);
@@ -57,6 +63,7 @@
     background: $oc-gray-4;
     color: $oc-gray-6;
     cursor: default;
+
     &:hover, &:active {
       box-shadow: none;
       background: $oc-gray-4;

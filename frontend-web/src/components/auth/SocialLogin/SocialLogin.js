@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import styles from "./SocialLogin.scss";
-import classNames from "classnames/bind";
-import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL } from "commonConstants";
-import fbLogo from "img/fb-logo.png";
-import googleLogo from "img/google-logo.png";
+import React, { Component } from 'react';
+import styles from './SocialLogin.scss';
+import classNames from 'classnames/bind';
+import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL } from 'commonConstants';
+import fbLogo from 'img/fb-logo.png';
+import googleLogo from 'img/google-logo.png';
 
 const cx = classNames.bind(styles);
 
@@ -20,21 +20,21 @@ class SocialLogin extends Component {
     }
 
     return (
-      <div className={cx("login-container")}>
-        <div className={cx("login-content")}>
-          <h1 className={cx("login-title")}>Login to SpringSocial</h1>
+      <div className={cx('login-container')}>
+        <div className={cx('login-content')}>
+          <h1 className={cx('login-title')}>Login to SpringSocial</h1>
           <div className="social-login">
             <a
-              className={cx("btn", "block", "social-btn", "google")}
+              className={cx('btn', 'block', 'social-btn', 'google')}
               href={baseUrl + GOOGLE_AUTH_URL + redirectUri}
             >
-              <img src={googleLogo} alt="Google" /> Google
+              <img src={googleLogo} alt="Google"/> Google
             </a>
             <a
-              className={cx("btn", "block", "social-btn", "facebook")}
+              className={cx('btn', 'block', 'social-btn', 'facebook')}
               href={baseUrl + FACEBOOK_AUTH_URL + redirectUri}
             >
-              <img src={fbLogo} alt="Facebook" /> Facebook
+              <img src={fbLogo} alt="Facebook"/> Facebook
             </a>
           </div>
         </div>

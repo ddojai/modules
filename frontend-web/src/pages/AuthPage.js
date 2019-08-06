@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PageTemplate from "components/common/PageTemplate";
-import LoginContainers from "containers/auth/LoginContainers";
+import React, { Component } from 'react';
+import PageTemplate from 'components/common/PageTemplate';
+import LoginContainers from 'containers/auth/LoginContainers';
 
 const AuthPage = () => {
   return (

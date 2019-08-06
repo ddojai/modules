@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import SocialLogin from "components/auth/SocialLogin/SocialLogin";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as baseActions from "store/modules/base";
+import SocialLogin from 'components/auth/SocialLogin/SocialLogin';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as baseActions from 'store/modules/base';
 
 class LoginContainers extends Component {
 
@@ -13,7 +13,7 @@ class LoginContainers extends Component {
     if (authenticated) {
       return <Redirect
         to={{
-          pathname: "/",
+          pathname: '/',
           state: { from: this.props.location }
         }}/>;
     }

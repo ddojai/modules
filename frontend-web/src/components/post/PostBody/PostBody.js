@@ -10,7 +10,7 @@ const PostBody = ({ content }) => {
     <div className={cx('post-body')}>
       <div className={cx('paper')}>
         {
-          contentString.split('\n').map( (line, key) => {
+          contentString.split('\n').map((line, key) => {
             return (<span key={key}>{line}<br/></span>)
           })
         }

@@ -1,15 +1,15 @@
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleActions } from 'redux-actions';
 
-import { Map } from "immutable";
-import { pender } from "redux-pender";
-import * as api from "lib/api";
+import { Map } from 'immutable';
+import { pender } from 'redux-pender';
+import * as api from 'lib/api';
 
 // action types
-const INITIALIZE = "editor/INITIALIZE";
-const CHANGE_INPUT = "editor/CHANGE_INPUT";
-const WRITE_POST = "editor/WRITE_POST";
-const GET_POST = "editor/GET_POST";
-const EDIT_POST = "editor/EDIT_POST";
+const INITIALIZE = 'editor/INITIALIZE';
+const CHANGE_INPUT = 'editor/CHANGE_INPUT';
+const WRITE_POST = 'editor/WRITE_POST';
+const GET_POST = 'editor/GET_POST';
+const EDIT_POST = 'editor/EDIT_POST';
 
 // action creators
 export const initialize = createAction(INITIALIZE);
@@ -20,9 +20,9 @@ export const editPost = createAction(EDIT_POST, api.editPost);
 
 // initial state
 const initialState = Map({
-  title: "",
-  content: "",
-  tags: "",
+  title: '',
+  content: '',
+  tags: '',
   postId: null
 });
 
@@ -38,7 +38,7 @@ export default handleActions(
       type: WRITE_POST,
       onSuccess: (state, action) => {
         const { id } = action.payload.data;
-        return state.set("postId", id);
+        return state.set('postId', id);
       }
     }),
     ...pender({
@@ -46,9 +46,9 @@ export default handleActions(
       onSuccess: (state, action) => {
         const { title, tags, content } = action.payload.data;
         return state
-          .set("title", title)
-          .set("content", content)
-          .set("tags", tags.join(",")); // 배열 -> ,로 구분된 문자열
+          .set('title', title)
+          .set('content', content)
+          .set('tags', tags.join(',')); // 배열 -> ,로 구분된 문자열
       }
     })
   },
