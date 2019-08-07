@@ -11,24 +11,24 @@ if (process.env.NODE_ENV === 'development') {
 
 // post
 export const getPost = id =>
-  axios.get(`/api/posts/${id}`);
+  axios.get(`/posts/${id}`);
 export const getPostList = ({ tag, page }) =>
-  axios.get(`/api/posts/?${queryString.stringify({ tag, page })}`);
+  axios.get(`/posts/?${queryString.stringify({ tag, page })}`);
 export const writePost = ({ title, content, tags, userId }) =>
-  axios.post('/api/posts', {
+  axios.post('/posts', {
     title,
     content,
     tags,
     userId
   }, { headers: { Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN) } });
 export const editPost = ({ id, title, content, tags }) =>
-  axios.patch(`/api/posts/${id}`, {
+  axios.patch(`/posts/${id}`, {
     title,
     content,
     tags
   }, { headers: { Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN) } });
 export const removePost = id =>
-  axios.delete(`/api/posts/${id}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN) } });
+  axios.delete(`/posts/${id}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN) } });
 
 // auth
 export const getUser = () =>
