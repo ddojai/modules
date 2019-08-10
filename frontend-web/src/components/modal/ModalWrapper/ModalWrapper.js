@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 class ModalWrapper extends Component {
   state = {
     animate: false
-  }
+  };
 
   startAnimation = () => {
     // animate 값을 true로 설정 후
@@ -20,7 +20,7 @@ class ModalWrapper extends Component {
         animate: false
       });
     }, 250)
-  }
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.visible !== this.props.visible) {

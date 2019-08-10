@@ -57,7 +57,7 @@ class EditorHeaderContainer extends Component {
       <EditorHeader
         onGoBack={handleGoBack}
         onSubmit={handleSubmit}
-        isEdit={id ? true : false}
+        isEdit={!!id}
       />
     );
   }
