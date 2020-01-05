@@ -1,6 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-.gradle
 build
 application-oauth.properties
 application-real-db.properties

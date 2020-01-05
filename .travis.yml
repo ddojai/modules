@@ -12,10 +12,10 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "./server-api/gradlew clean build"
+script: "./gradlew :server-api:clean build"
 
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:
     recipients:
-      - heungyeol87
+      - heungyeol87@gmail.com
