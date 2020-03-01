@@ -20,16 +20,16 @@ const checkSaga = createRequestSaga(CHECK, authAPI.check);
 
 function checkFailureSaga() {
   try {
-    localStorage.removeItem('user'); // localStorage에서 user를 제거
+    localStorage.removeItem('user'); // localStorage 에서 user 제거하고
   } catch (e) {
     console.log('localStorage is not working');
   }
 }
 
-function *logoutSaga() {
+function* logoutSaga() {
   try {
     yield call(authAPI.logout); // logout API 호출
-    localStorage.removeItem('user'); // localStorage에서 user를 제거
+    localStorage.removeItem('user'); // localStorage 에서 user 제거
   } catch (e) {
     console.log(e);
   }

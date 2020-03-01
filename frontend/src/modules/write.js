@@ -40,7 +40,7 @@ export const updatePost = createAction(
   }),
 );
 
-// 사가 생성
+// saga 생성
 const writePostSaga = createRequestSaga(WRITE_POST, postsAPI.writePost);
 const updatePostSaga = createRequestSaga(UPDATE_POST, postsAPI.updatePost);
 
@@ -60,7 +60,7 @@ const initialState = {
 
 const write = handleActions(
   {
-    [INITIALIZE]: state => initialState, // initailState를 넣으면 초기 상태로 바뀜
+    [INITIALIZE]: state => initialState, // initialState를 넣으면 초기상태로 바뀜
     [CHANGE_FIELD]: (state, { payload: { key, value } }) => ({
       ...state,
       [key]: value, // 특정 key 값을 업데이트

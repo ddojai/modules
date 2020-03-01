@@ -30,6 +30,7 @@ const RegisterForm = ({ history }) => {
   const onSubmit = e => {
     e.preventDefault();
     const { username, password, passwordConfirm } = form;
+    // 하나라도 비어있다면
     if ([username, password, passwordConfirm].includes('')) {
       setError('빈 칸을 모두 입력하세요.');
       return;
@@ -37,19 +38,21 @@ const RegisterForm = ({ history }) => {
     // 비밀번호가 일치하지 않는다면
     if (password !== passwordConfirm) {
       setError('비밀번호가 일치하지 않습니다.');
-      changeField({form: 'register', key: 'password', value: ''});
-      changeField({form: 'register', key: 'passwordConfirm', value: ''});
+      dispatch(changeField({ form: 'register', key: 'password', value: '' }));
+      dispatch(
+        changeField({ form: 'register', key: 'passwordConfirm', value: '' }),
+      );
       return;
     }
     dispatch(register({ username, password }));
   };
 
-  // 컴포넌트가 차음 렌더링될 때 form을 초기화함
+  // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
     dispatch(initializeForm('register'));
   }, [dispatch]);
 
-  // 회원가입 성공/실패 처리
+  // 회원가입 성공 / 실패 처리
   useEffect(() => {
     if (authError) {
       // 계정명이 이미 존재할 때
@@ -57,10 +60,11 @@ const RegisterForm = ({ history }) => {
         setError('이미 존재하는 계정명입니다.');
         return;
       }
-      // 기타이유
+      // 기타 이유
       setError('회원가입 실패');
       return;
     }
+
     if (auth) {
       console.log('회원가입 성공');
       console.log(auth);
