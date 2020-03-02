@@ -1,13 +1,2 @@
-# dependencies
-*/node_modules
-
-# gradle
 .gradle
-
-# ide
 .idea
-
-# yarn
-yarn-debug.log*
-yarn-error.log*
-yarn.lock
