@@ -20,4 +20,8 @@ public class PostsListResponseDto {
         this.author = entity.getAuthor();
         this.modifiedDate = entity.getModifiedDate();
     }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

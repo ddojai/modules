@@ -7,6 +7,8 @@ import io.booklog.web.dto.PostsResponseDto;
 import io.booklog.web.dto.PostsSaveRequestDto;
 import io.booklog.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,11 @@ public class PostsService {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Posts> findAll(Pageable pageable) {
+        return postsRepository.findAll(pageable);
     }
 
     @Transactional
