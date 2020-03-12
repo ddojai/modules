@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <title>REACTERS</title>
+        <title>BOOKLOG</title>
       </Helmet>
 
       <Route component={PostListPage} path={['/@:username', '/']} exact />
