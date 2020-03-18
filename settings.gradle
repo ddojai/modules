@@ -1,3 +1,4 @@
 rootProject.name = 'booklog'
 include 'server-api'
+include 'backend-api'
 
