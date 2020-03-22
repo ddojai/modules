@@ -20,6 +20,13 @@ import java.util.Optional;
 
 import static org.wooritown.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
+/**
+ * OAuth2AuthenticationSuccessHandler는 login 성공시 invoked 됩니다.
+ * redirection uri에 대한 validation을 수행합니다.
+ * unauthorized redirect uri로 요청이 들어온경우, 에러가 발생합니다.
+ * JWT Token을 생성합니다.
+ * user를 redirect_uri로 redirect 합니다. 이때 생성한 JWT Token을 Query String으로 전달합니다
+ */
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 

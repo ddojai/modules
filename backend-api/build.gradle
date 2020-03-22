@@ -6,8 +6,8 @@ group 'org.wooritown'
 
 dependencies {
     // board
-    compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '7.0.19'
-    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '9.0.12'
+//    compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '7.0.19'
+//    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '9.0.12'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.2.RELEASE'
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
@@ -16,7 +16,7 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.1.2.RELEASE'
 
     // server-api
-    // compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     compile('com.h2database:h2')
     compile('org.mariadb.jdbc:mariadb-java-client')
     compile('org.springframework.boot:spring-boot-starter-web')

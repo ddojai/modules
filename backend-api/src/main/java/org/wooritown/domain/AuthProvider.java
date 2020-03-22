@@ -1,6 +1,10 @@
 package org.wooritown.domain;
 
 public enum AuthProvider {
+//    local,
+    google,
     facebook,
-    google
+//    github,
+//    naver,
+//    kakao,
 }

@@ -2,6 +2,9 @@ package org.wooritown.security.oauth2.user;
 
 import java.util.Map;
 
+/**
+ * provider를 사용하기위한 mapping classes
+ */
 public abstract class OAuth2UserInfo {
   protected Map<String, Object> attributes;
 

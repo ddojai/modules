@@ -19,6 +19,9 @@ import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
+/**
+ * OAuth2 provider로부터 access token을 전달받은 뒤 이를 사용해 user 정보를 load 할 때 사용됩니다.
+ */
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 

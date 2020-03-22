@@ -15,6 +15,9 @@ import java.io.IOException;
 
 import static org.wooritown.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
+/**
+ * OAuth2 authentication 수행중에 어떠한 error라도 발생하게되면, OAuth2AuthenticationFailureHandler가 invoke 됩니다.
+ */
 @Component
 public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
