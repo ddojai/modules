@@ -6,6 +6,6 @@ dependencies {
   compile('org.springframework.boot:spring-boot-starter-oauth2-client')
   compile('org.springframework.boot:spring-boot-starter-web')
   compile('org.springframework.session:spring-session-jdbc')
-  compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
   testCompile('org.springframework.security:spring-security-test')
 }

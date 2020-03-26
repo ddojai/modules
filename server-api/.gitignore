@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 build
-application-oauth.yml
+application-oauth.properties
 application-real-db.properties
