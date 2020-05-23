@@ -33,7 +33,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private CustomUserDetailsService customUserDetailsService;  //인증시 사용할 custom User Service 입니다. https://velog.io/@minholee_93/Spring-Security-Database-Authentication-Spring-Boot-6
+  private CustomUserDetailsService customUserDetailsService;  //인증시 사용할 custom User Service 입니다.
 
   @Autowired
   private CustomOAuth2UserService customOAuth2UserService;
@@ -50,7 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Bean
   public TokenAuthenticationFilter tokenAuthenticationFilter() {
     // 로그인시 JWT Token을 확인해 인가된 사용자 유무를 판별하고 내부 process를 수행합니다.
-    // https://velog.io/@minholee_93/Spring-Security-JWT-Security-Spring-Boot-10
     return new TokenAuthenticationFilter();
   }
 
@@ -64,7 +63,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // Spring OAuth2는 기본적으로 HttpSessionOAuth2AuthorizationRequestRepository를 사용해 Authorization Request를 저장합니다.
     // JWT를 사용하므로, Session에 이를 저장할 필요가 없습니다.
     // 따라서 custom으로 구현한 HttpCookieOAuth2AuthorizationRequestRepository를 사용해 Authorization Request를 Based64 encoded cookie에 저장합니다
-    // https://velog.io/@minholee_93/Spring-Security-JWT-Authentication
     return new HttpCookieOAuth2AuthorizationRequestRepository();
   }
 
@@ -118,9 +116,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         "/**/*.css",
         "/**/*.js")
       .permitAll()
-      .antMatchers("/auth/**", "/oauth2/**", "/actuator/health")
+      .antMatchers("/auth/**", "/oauth2/**")
       .permitAll()
-      .antMatchers(HttpMethod.GET, "/api/**") // todo custom
+      .antMatchers(HttpMethod.GET, "/api/**")
       .permitAll()
       .anyRequest()
       .authenticated()  // 설정된 값들 이외 나머지 URL들은 모두 인증된 사용자들에게만 허용
@@ -129,9 +127,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizationEndpoint() // oauth 로그인시 접근할 end point를 정의합니다
       .baseUri("/oauth2/authorize")
       .authorizationRequestRepository(cookieAuthorizationRequestRepository())
-      .and()
-      .redirectionEndpoint()
-      .baseUri("/oauth2/callback/*")  // todo velog 에 없음 https://www.callicoder.com/spring-boot-security-oauth2-social-login-part-2/
       .and()
       .userInfoEndpoint() // Oauth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정들을 담당
       .userService(customOAuth2UserService) // 소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록.

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing      // JPA Auditing 활성화
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
-public class ApiApplication {
+public class Application {
     private static final String APPLICATION_LOCATIONS = "spring.config.location="
             + "classpath:application.yml,"
             + "classpath:application-oauth.yml,"
@@ -17,7 +17,7 @@ public class ApiApplication {
             + "/app/config/community/application-auth.yml";
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ApiApplication.class)
+        new SpringApplicationBuilder(Application.class)
                 .properties(APPLICATION_LOCATIONS)
                 .run(args);
     }
