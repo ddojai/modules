@@ -53,12 +53,11 @@ const Header = ({ user, onLogout }) => {
           {user ? (
             <div className="right">
               <UserInfo>{user.username}</UserInfo>
-              <Button href="http://localhost:8080/logout">로그아웃</Button>
+              <Button onClick={onLogout}>로그아웃</Button>
             </div>
           ) : (
             <div className="right">
-              <Button href="http://localhost:8080/oauth2/authorization/google">Google Login</Button>
-              <Button href="http://localhost:8080/oauth2/authorization/naver">Naver Login</Button>
+              <Button to="/login">로그인</Button>
             </div>
           )}
         </Wrapper>
