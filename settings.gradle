@@ -1,4 +1,3 @@
-rootProject.name = 'booklog'
-include 'server-api'
+rootProject.name = 'financial'
 include 'backend-api'
 

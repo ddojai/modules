@@ -1,4 +1,4 @@
-# wooritown
+# financial
 
 ## frontend
 
@@ -9,3 +9,6 @@
 * https://material.io/design/
 
 ## backend
+
+### log
+* logback, slf4j
