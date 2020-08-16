@@ -1,4 +1,4 @@
-package com.independence.domain;
+package com.independence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.independence.controller;
 
 import com.independence.repository.UserRepository;
-import com.independence.domain.User;
+import com.independence.model.User;
 import com.independence.exception.ResourceNotFoundException;
 import com.independence.security.CurrentUser;
 import com.independence.security.UserPrincipal;

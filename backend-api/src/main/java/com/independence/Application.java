@@ -10,15 +10,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
 public class Application {
-    private static final String APPLICATION_LOCATIONS = "spring.config.location="
-            + "classpath:application.yml,"
-            + "classpath:application-oauth.yml,"
-            + "/app/config/community/real-application.yml,"
-            + "/app/config/community/application-auth.yml";
+  private static final String APPLICATION_LOCATIONS = "spring.config.location="
+    + "classpath:application.yml,"
+    + "classpath:application-oauth.yml";
 
-    public static void main(String[] args) {
-        new SpringApplicationBuilder(Application.class)
-                .properties(APPLICATION_LOCATIONS)
-                .run(args);
-    }
+  public static void main(String[] args) {
+    new SpringApplicationBuilder(Application.class)
+      .properties(APPLICATION_LOCATIONS)
+      .run(args);
+  }
 }

@@ -1,4 +1,4 @@
-package com.independence.domain;
+package com.independence.model;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTimeEntity {
 
-    @CreatedDate
-    private LocalDateTime createdDate;
+  @CreatedDate
+  private LocalDateTime createdDate;
 
-    @LastModifiedDate
-    private LocalDateTime modifiedDate;
+  @LastModifiedDate
+  private LocalDateTime modifiedDate;
 
 }

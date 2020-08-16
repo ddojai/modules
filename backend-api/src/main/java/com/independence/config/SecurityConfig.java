@@ -60,9 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   */
   @Bean
   public HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository() {
-    // Spring OAuth2는 기본적으로 HttpSessionOAuth2AuthorizationRequestRepository를 사용해 Authorization Request를 저장합니다.
+    // Spring OAuth2는 기본적으로 HttpSessionOAuth2AuthorizationRequestRepository를 사용해 Authorization
+    // Request를 저장합니다.
     // JWT를 사용하므로, Session에 이를 저장할 필요가 없습니다.
-    // 따라서 custom으로 구현한 HttpCookieOAuth2AuthorizationRequestRepository를 사용해 Authorization Request를 Based64 encoded cookie에 저장합니다
+    // 따라서 custom으로 구현한 HttpCookieOAuth2AuthorizationRequestRepository를 사용해 Authorization
+    // Request를 Based64 encoded cookie에 저장합니다
     return new HttpCookieOAuth2AuthorizationRequestRepository();
   }
 
@@ -93,7 +95,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .cors() // cors을 허용
       .and()
       .sessionManagement()
-      .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // session Creation Policy를 STATELESS로 정의해 session을 사용하지 않겠다
+      .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // session Creation Policy를
+      // STATELESS로 정의해 session을 사용하지 않겠다
       .and()
       .csrf()
       .disable()
@@ -102,7 +105,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .httpBasic()
       .disable()
       .exceptionHandling()
-      .authenticationEntryPoint(new RestAuthenticationEntryPoint()) // 사용자가 authentication 없이 protected resource에 접근하는 경우에 invoked 되는 entry point를 정의합니다.
+      .authenticationEntryPoint(new RestAuthenticationEntryPoint()) // 사용자가 authentication 없이
+      // protected resource에 접근하는 경우에 invoked 되는 entry point를 정의합니다.
       .and()
       .authorizeRequests()  // URL 별 권한 관리를 설정하는 옵션의 시작점. 선언되야 antMatchers 옵션 사용 가능
       .antMatchers("/", // 권한 관리 대상을 지정하는 옵션. URL, HTTP 메소드 별로 관리 가능
@@ -118,8 +122,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .permitAll()
       .antMatchers("/auth/**", "/oauth2/**")
       .permitAll()
-      .antMatchers(HttpMethod.GET, "/api/**")
-      .permitAll()
       .anyRequest()
       .authenticated()  // 설정된 값들 이외 나머지 URL들은 모두 인증된 사용자들에게만 허용
       .and()
@@ -128,6 +130,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .baseUri("/oauth2/authorize")
       .authorizationRequestRepository(cookieAuthorizationRequestRepository())
       .and()
+      .redirectionEndpoint()
+      .baseUri("/oauth2/callback/*")
+      .and()
       .userInfoEndpoint() // Oauth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정들을 담당
       .userService(customOAuth2UserService) // 소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록.
       .and()
@@ -135,7 +140,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .failureHandler(oAuth2AuthenticationFailureHandler); // 로그인 실패시 invoke 할 Handler를 정의합니다.
 
     // Add our custom Token based authentication filter
-    // reqeust 요청이 올때마다 UsernamePasswordAuthenticationFilter 이전에 tokenAuthenticaitonFilter를 수행하도록 정의합니다.
+    // reqeust 요청이 올때마다 UsernamePasswordAuthenticationFilter 이전에 tokenAuthenticaitonFilter를 수행하도록
+    // 정의합니다.
     http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
   }
 }

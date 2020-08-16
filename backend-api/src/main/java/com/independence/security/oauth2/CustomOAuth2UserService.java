@@ -4,8 +4,8 @@ import com.independence.exception.OAuth2AuthenticationProcessingException;
 import com.independence.repository.UserRepository;
 import com.independence.security.oauth2.user.OAuth2UserInfo;
 import com.independence.security.oauth2.user.OAuth2UserInfoFactory;
-import com.independence.domain.AuthProvider;
-import com.independence.domain.User;
+import com.independence.model.AuthProvider;
+import com.independence.model.User;
 import com.independence.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -24,7 +24,6 @@ import java.util.Optional;
  */
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
-
   @Autowired
   private UserRepository userRepository;
 
@@ -37,22 +36,24 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     } catch (AuthenticationException ex) {
       throw ex;
     } catch (Exception ex) {
-      // Throwing an instance of AuthenticationException will trigger the OAuth2AuthenticationFailureHandler
+      // Throwing an instance of AuthenticationException will trigger the
+      // OAuth2AuthenticationFailureHandler
       throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
     }
   }
 
   private OAuth2User processOAuth2User(OAuth2UserRequest oAuth2UserRequest, OAuth2User oAuth2User) {
-    OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(oAuth2UserRequest.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
-    if(StringUtils.isEmpty(oAuth2UserInfo.getEmail())) {
+    OAuth2UserInfo oAuth2UserInfo =
+      OAuth2UserInfoFactory.getOAuth2UserInfo(oAuth2UserRequest.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
+    if (StringUtils.isEmpty(oAuth2UserInfo.getEmail())) {
       throw new OAuth2AuthenticationProcessingException("Email not found from OAuth2 provider");
     }
 
     Optional<User> userOptional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
     User user;
-    if(userOptional.isPresent()) {
+    if (userOptional.isPresent()) {
       user = userOptional.get();
-      if(!user.getProvider().equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
+      if (!user.getProvider().equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
         throw new OAuth2AuthenticationProcessingException("Looks like you're signed up with " +
           user.getProvider() + " account. Please use your " + user.getProvider() +
           " account to login.");
@@ -81,5 +82,4 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     existingUser.setImageUrl(oAuth2UserInfo.getImageUrl());
     return userRepository.save(existingUser);
   }
-
 }

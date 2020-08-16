@@ -2,7 +2,7 @@ package com.independence.security;
 
 import com.independence.exception.ResourceNotFoundException;
 import com.independence.repository.UserRepository;
-import com.independence.domain.User;
+import com.independence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

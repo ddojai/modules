@@ -11,10 +11,8 @@ import java.util.Date;
 
 @Service
 public class TokenProvider {
-
   private static final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
-
-  private AppProperties appProperties;
+  private final AppProperties appProperties;
 
   public TokenProvider(AppProperties appProperties) {
     this.appProperties = appProperties;
