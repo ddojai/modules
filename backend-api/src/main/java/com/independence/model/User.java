@@ -26,6 +26,7 @@ public class User {
   @Column(nullable = false)
   private String email;
 
+  @Column(length = 512)
   private String imageUrl;
 
   @Column(nullable = false)
