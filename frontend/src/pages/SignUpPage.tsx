@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-function LoginPage() {
+function SignUpPage() {
   return (
     <Container>
-      로그인
+      회원가입
     </Container>
   );
 }
 
-export default LoginPage
+export default SignUpPage
