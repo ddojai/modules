@@ -1,12 +1,16 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
+import AuthTemplate from 'components/auth/AuthTemplate';
+import AuthForm from 'components/auth/AuthForm';
 
 function SignUpPage() {
   return (
     <Container>
-      회원가입
+      <AuthTemplate>
+        <AuthForm type="signUp"/>
+      </AuthTemplate>
     </Container>
   );
 }
 
-export default SignUpPage
+export default SignUpPage;
