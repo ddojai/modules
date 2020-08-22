@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import AuthTemplate from 'components/auth/AuthTemplate';
-import AuthForm from 'components/auth/AuthForm';
+import AuthTemplate from 'components/common/AuthTemplate';
+import LoginForm from 'components/login/LoginForm';
 
 function LoginPage() {
   return (
     <Container>
       <AuthTemplate>
-        <AuthForm type="login" />
+        <LoginForm />
       </AuthTemplate>
     </Container>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, colors, Input, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import useSignUp from 'hooks/useSignUp';
 
 const useStyles = makeStyles({
   authFormBox: {
@@ -45,33 +46,22 @@ const useStyles = makeStyles({
   },
 });
 
-interface TextMap {
-  login: string;
-  signUp: string;
-}
-
-const textMap: TextMap = {
-  login: '로그인',
-  signUp: '회원가입',
-};
-
-interface AuthFormProps {
-  type: 'login' | 'signUp';
-}
-
-function AuthForm({ type }: AuthFormProps) {
+function SignUpForm() {
   const classes = useStyles();
-  const text = textMap[type];
+  const { signUp, onChange, onSubmit } = useSignUp();
+  const text = '회원가입';
 
   return (
     <Box className={classes.authFormBox}>
       <h3>{text}</h3>
-      <form>
+      <form onSubmit={onSubmit}>
         <Input
           className={classes.styledInput}
           autoComplete="username"
           name="username"
           placeholder="아이디"
+          onChange={onChange}
+          value={signUp.username}
         />
         <Input
           className={classes.styledInput}
@@ -79,16 +69,18 @@ function AuthForm({ type }: AuthFormProps) {
           name="password"
           placeholder="비밀번호"
           type="password"
+          onChange={onChange}
+          value={signUp.password}
         />
-        {type === 'signUp' && (
-          <Input
-            className={classes.styledInput}
-            autoComplete="new-password"
-            name="password"
-            placeholder="비밀번호"
-            type="password"
-          />
-        )}
+        <Input
+          className={classes.styledInput}
+          autoComplete="new-password"
+          name="passwordConfirm"
+          placeholder="비밀번호"
+          type="password"
+          onChange={onChange}
+          value={signUp.passwordConfirm}
+        />
         <Button
           className={classes.loginButton}
           variant="contained"
@@ -99,14 +91,10 @@ function AuthForm({ type }: AuthFormProps) {
         </Button>
       </form>
       <Box className={classes.footerBox}>
-        {type === 'login' ? (
-          <Link to="/signup">회원가입</Link>
-        ) : (
-          <Link to="/login">로그인</Link>
-        )}
+        <Link to="/login">로그인</Link>
       </Box>
     </Box>
   );
 }
 
-export default AuthForm;
+export default SignUpForm;
