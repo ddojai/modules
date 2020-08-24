@@ -1,10 +1,13 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
+import PostList from 'components/posts/PostList';
+import Header from 'components/common/Header';
 
 function PostListPage() {
   return (
     <Container>
-      포스트 리스트
+      <Header />
+      <PostList />
     </Container>
   );
 }
