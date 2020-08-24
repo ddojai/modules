@@ -3,7 +3,8 @@ import { SignUpState, SignUpAction } from './types';
 import { INITIALIZE_FORM, CHANGE_FILED } from './actions';
 
 const initialState: SignUpState = {
-  username: '',
+  name: '',
+  email: '',
   password: '',
   passwordConfirm: '',
 };

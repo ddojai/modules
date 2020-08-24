@@ -6,6 +6,6 @@ export type LoginAction = ActionType<typeof actions>;
 
 // 상태를 위한 타입 선언
 export type LoginState = {
-  username: string;
+  email: string;
   password: string;
 };

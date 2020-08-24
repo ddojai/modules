@@ -9,11 +9,11 @@ import PostPage from './pages/PostPage';
 function App() {
   return (
     <>
-      <Route component={PostListPage} path={['/@:username', '/']} exact />
+      <Route component={PostListPage} path={['/@:email', '/']} exact />
       <Route component={LoginPage} path="/login" />
       <Route component={SignUpPage} path="/signup" />
       <Route component={WritePage} path="/write" />
-      <Route component={PostPage} path="/@:username/:postId" />
+      <Route component={PostPage} path="/@:email/:postId" />
     </>
   );
 }

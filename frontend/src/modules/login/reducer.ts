@@ -3,7 +3,7 @@ import { LoginState, LoginAction } from './types';
 import { INITIALIZE_FORM, CHANGE_FILED } from './actions';
 
 const initialState: LoginState = {
-  username: '',
+  email: '',
   password: '',
 };
 

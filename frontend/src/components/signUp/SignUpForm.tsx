@@ -37,17 +37,24 @@ function SignUpForm() {
     <form onSubmit={onSubmit}>
       <Input
         className={classes.styledInput}
-        autoComplete="username"
-        name="username"
-        placeholder="아이디"
+        name="name"
+        placeholder="Name"
         onChange={onChange}
-        value={signUp.username}
+        value={signUp.name}
+      />
+      <Input
+        className={classes.styledInput}
+        autoComplete="email"
+        name="email"
+        placeholder="Email"
+        onChange={onChange}
+        value={signUp.email}
       />
       <Input
         className={classes.styledInput}
         autoComplete="new-password"
         name="password"
-        placeholder="비밀번호"
+        placeholder="Password"
         type="password"
         onChange={onChange}
         value={signUp.password}
@@ -56,7 +63,7 @@ function SignUpForm() {
         className={classes.styledInput}
         autoComplete="new-password"
         name="passwordConfirm"
-        placeholder="비밀번호확인"
+        placeholder="Password Confirm"
         type="password"
         onChange={onChange}
         value={signUp.passwordConfirm}

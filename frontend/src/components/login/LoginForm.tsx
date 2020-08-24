@@ -37,17 +37,17 @@ function LoginForm() {
     <form onSubmit={onSubmit}>
       <Input
         className={classes.styledInput}
-        autoComplete="username"
-        name="username"
-        placeholder="아이디"
+        autoComplete="email"
+        name="email"
+        placeholder="Email"
         onChange={onChange}
-        value={login.username}
+        value={login.email}
       />
       <Input
         className={classes.styledInput}
         autoComplete="new-password"
         name="password"
-        placeholder="비밀번호"
+        placeholder="Password"
         type="password"
         onChange={onChange}
         value={login.password}

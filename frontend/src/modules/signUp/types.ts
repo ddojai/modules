@@ -6,7 +6,8 @@ export type SignUpAction = ActionType<typeof actions>;
 
 // 상태를 위한 타입 선언
 export type SignUpState = {
-  username: string;
+  name: string;
+  email: string;
   password: string;
   passwordConfirm: string;
 };
