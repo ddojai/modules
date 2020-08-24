@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Box, Button, makeStyles, Link } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -27,7 +27,7 @@ function Header() {
 
   return (
     <Box className={classes.header}>
-      <Box className={classes.logo}>Financial Independence</Box>
+      <Link className={classes.logo} href="/">Financial Independence</Link>
       <Box className={classes.right}>
         <Button href="/login">
           Login

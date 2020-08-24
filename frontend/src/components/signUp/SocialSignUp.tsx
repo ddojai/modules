@@ -1,11 +1,11 @@
 import React from 'react';
+import { makeStyles, Box, Button } from '@material-ui/core';
 import fbLogo from 'img/fb-logo.png';
 import googleLogo from 'img/google-logo.png';
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL } from 'constant';
-import { makeStyles, Box, Button } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  socialLogin: {},
+  socialSignUp: {},
   socialButton: {
     display: 'block',
     width: '100%',
@@ -24,25 +24,25 @@ const useStyles = makeStyles({
   },
 });
 
-function SocialLogin() {
+function SocialSignUp(props) {
   const classes = useStyles();
 
   return (
-    <Box className={classes.socialLogin}>
+    <Box className={classes.socialSignUp}>
       <Box className={classes.socialButton}>
         <Button href={GOOGLE_AUTH_URL}>
-          <img className={classes.google} src={googleLogo} alt="Google" /> Log
-          in with Google
+          <img className={classes.google} src={googleLogo} alt="Google" /> Sign
+          up with Google
         </Button>
       </Box>
       <Box className={classes.socialButton}>
         <Button href={FACEBOOK_AUTH_URL}>
-          <img className={classes.facebook} src={fbLogo} alt="Facebook" /> Log
-          in with Facebook
+          <img className={classes.facebook} src={fbLogo} alt="Facebook" /> Sign
+          up with Facebook
         </Button>
       </Box>
     </Box>
   );
 }
 
-export default SocialLogin;
+export default SocialSignUp;

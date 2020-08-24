@@ -1,14 +1,13 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import AuthTemplate from 'components/common/AuthTemplate';
-import SignUpForm from 'components/signUp/SignUpForm';
+import Header from 'components/common/Header';
+import SignUp from 'components/signUp/SignUp';
 
 function SignUpPage() {
   return (
     <Container>
-      <AuthTemplate>
-        <SignUpForm />
-      </AuthTemplate>
+      <Header />
+      <SignUp />
     </Container>
   );
 }
