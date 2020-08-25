@@ -1,12 +1,15 @@
-import { createAction } from 'typesafe-actions';
+import { createAsyncAction } from 'typesafe-actions';
+import { SignUpSuccess } from 'api/signUp';
+import { AxiosError } from 'axios';
 
 // 액션 type
-export const CHANGE_FILED = 'signUp/CHANGE_FILED';
-export const INITIALIZE_FORM = 'signUp/INITIALIZE_FORM';
+export const SIGN_UP = 'signUp/SIGN_UP';
+export const SIGN_UP_SUCCESS = 'signUp/SIGN_UP_SUCCESS';
+export const SIGN_UP_ERROR = 'signUp/SIGN_UP_ERROR';
 
 // 액션 생성 함수
-export const changeField = createAction(CHANGE_FILED, ({ key, value }) => ({
-  key, // email, password, passwordConfirm
-  value, // 실제 바꾸려는 값
-}))();
-export const initializeForm = createAction(INITIALIZE_FORM)();
+export const signUpAsync = createAsyncAction(
+  SIGN_UP,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_ERROR
+)<undefined, SignUpSuccess, AxiosError>();
