@@ -1,17 +1,39 @@
 import { createReducer } from 'typesafe-actions';
 import { LoginState, LoginAction } from './types';
-import { INITIALIZE_FORM, CHANGE_FILED } from './actions';
+import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR } from './actions';
 
 const initialState: LoginState = {
-  email: '',
-  password: '',
+  loginResponse: {
+    loading: false,
+    error: null,
+    data: null,
+  },
 };
 
 const login = createReducer<LoginState, LoginAction>(initialState, {
-  [INITIALIZE_FORM]: () => initialState,
-  [CHANGE_FILED]: (state, { payload: { key, value } }) => ({
+  [LOGIN]: (state) => ({
     ...state,
-    [key]: value,
+    loginResponse: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [LOGIN_SUCCESS]: (state, action) => ({
+    ...state,
+    loginResponse: {
+      loading: false,
+      error: null,
+      data: action.payload,
+    },
+  }),
+  [LOGIN_ERROR]: (state, action) => ({
+    ...state,
+    loginResponse: {
+      loading: false,
+      error: action.payload,
+      data: null,
+    },
   }),
 });
 

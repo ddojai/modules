@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 
 function LoginForm() {
   const classes = useStyles();
-  const { login, onChange, onSubmit } = useLogin();
+  const { form, onChange, onSubmit } = useLogin();
 
   return (
     <form onSubmit={onSubmit}>
@@ -41,7 +41,7 @@ function LoginForm() {
         name="email"
         placeholder="Email"
         onChange={onChange}
-        value={login.email}
+        value={form.email}
       />
       <Input
         className={classes.styledInput}
@@ -50,12 +50,13 @@ function LoginForm() {
         placeholder="Password"
         type="password"
         onChange={onChange}
-        value={login.password}
+        value={form.password}
       />
       <Button
         className={classes.loginButton}
         variant="contained"
         color="primary"
+        type="submit"
         fullWidth
       >
         Login
