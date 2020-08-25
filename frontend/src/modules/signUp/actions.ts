@@ -12,4 +12,8 @@ export const signUpAsync = createAsyncAction(
   SIGN_UP,
   SIGN_UP_SUCCESS,
   SIGN_UP_ERROR
-)<undefined, SignUpSuccess, AxiosError>();
+)<
+  { name: string; email: string; password: string },
+  SignUpSuccess,
+  AxiosError
+>();

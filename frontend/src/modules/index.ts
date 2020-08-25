@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import login from './login';
-import signUp from './signUp';
+import { loginSaga } from './login/sagas';
+import signUp, { signUpSaga } from './signUp';
+import { all } from 'redux-saga/effects';
 
 const rootReducer = combineReducers({
   login,
@@ -10,3 +12,7 @@ const rootReducer = combineReducers({
 export default rootReducer;
 
 export type RootState = ReturnType<typeof rootReducer>;
+
+export function* rootSaga() {
+  yield all([loginSaga(), signUpSaga()]);
+}

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'modules';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { signUpThunk } from 'modules/signUp/thunks';
+import { signUpAsync } from 'modules/signUp';
 
 export default function useSignUp() {
   const [form, setForm] = useState({
@@ -27,7 +27,7 @@ export default function useSignUp() {
     e.preventDefault();
     // todo : check password, passwordConfirm
     dispatch(
-      signUpThunk({
+      signUpAsync.request({
         name: form.name,
         email: form.email,
         password: form.password,

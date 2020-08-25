@@ -8,8 +8,8 @@ export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'login/LOGIN_ERROR';
 
 // 액션 생성 함수
-export const loginAsync = createAsyncAction(
-  LOGIN,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR
-)<undefined, LoginSuccess, AxiosError>();
+export const loginAsync = createAsyncAction(LOGIN, LOGIN_SUCCESS, LOGIN_ERROR)<
+  { email: string; password: string },
+  LoginSuccess,
+  AxiosError
+>();
