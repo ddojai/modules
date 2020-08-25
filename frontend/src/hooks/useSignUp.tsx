@@ -10,7 +10,9 @@ export default function useSignUp() {
     password: '',
     passwordConfirm: '',
   });
-  const signUpResponse = useSelector((state: RootState) => state.signUp.signUpResponse);
+  const signUpResponse = useSelector(
+    (state: RootState) => state.signUp.signUpResponse
+  );
   const dispatch = useDispatch();
 
   // 인풋 변경 이벤트 핸들러
@@ -25,12 +27,17 @@ export default function useSignUp() {
   // 폼 등록 이벤트 핸들러
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // todo : check password, passwordConfirm
+    const { name, email, password, passwordConfirm } = form;
+    if (password !== passwordConfirm) {
+      // TODO: 오류 처리
+      console.log('패스워드 불일치');
+      return;
+    }
     dispatch(
       signUpAsync.request({
-        name: form.name,
-        email: form.email,
-        password: form.password,
+        name,
+        email,
+        password,
       })
     );
   };
@@ -44,6 +51,20 @@ export default function useSignUp() {
       passwordConfirm: '',
     });
   }, []);
+
+  // 회원가입 성공/실패 처리
+  useEffect(() => {
+    const { error, data } = signUpResponse;
+    if (error) {
+      console.log('오류 발생');
+      console.log(signUpResponse.error);
+      return;
+    }
+    if (data) {
+      console.log('회원가입 성공');
+      console.log(data);
+    }
+  }, [signUpResponse]);
 
   return {
     form,
