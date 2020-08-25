@@ -1,39 +1,24 @@
 import { createReducer } from 'typesafe-actions';
 import { LoginState, LoginAction } from './types';
 import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR } from './actions';
+import { asyncState } from 'lib/reducerUtils';
 
 const initialState: LoginState = {
-  loginResponse: {
-    loading: false,
-    error: null,
-    data: null,
-  },
+  loginResponse: asyncState.initial(),
 };
 
 const login = createReducer<LoginState, LoginAction>(initialState, {
   [LOGIN]: (state) => ({
     ...state,
-    loginResponse: {
-      loading: true,
-      error: null,
-      data: null,
-    },
+    loginResponse: asyncState.load(),
   }),
   [LOGIN_SUCCESS]: (state, action) => ({
     ...state,
-    loginResponse: {
-      loading: false,
-      error: null,
-      data: action.payload,
-    },
+    loginResponse: asyncState.success(action.payload),
   }),
   [LOGIN_ERROR]: (state, action) => ({
     ...state,
-    loginResponse: {
-      loading: false,
-      error: action.payload,
-      data: null,
-    },
+    loginResponse: asyncState.error(action.payload),
   }),
 });
 
