@@ -9,6 +9,7 @@ export default function useLogin() {
     email: '',
     password: '',
   });
+  const [error, setError] = useState<string | null>(null);
   const loginResponse = useSelector(
     (state: RootState) => state.login.loginResponse
   );
@@ -46,6 +47,7 @@ export default function useLogin() {
     if (error) {
       console.log('오류 발생');
       console.log(error);
+      setError('로그인 실패');
       return;
     }
     if (data) {
@@ -63,8 +65,8 @@ export default function useLogin() {
 
   return {
     form,
-    loginResponse,
     onChange,
     onSubmit,
+    error,
   };
 }

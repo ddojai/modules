@@ -2,6 +2,7 @@ import React from 'react';
 import { Input, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import useSignUp from 'hooks/useSignUp';
+import { Alert } from '@material-ui/lab';
 
 const useStyles = makeStyles({
   styledInput: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
 
 function SignUpForm() {
   const classes = useStyles();
-  const { form, onChange, onSubmit } = useSignUp();
+  const { form, onChange, onSubmit, error } = useSignUp();
 
   return (
     <form onSubmit={onSubmit}>
@@ -77,6 +78,7 @@ function SignUpForm() {
       >
         Sign Up
       </Button>
+      {error && <Alert severity="error">{error}</Alert>}
     </form>
   );
 }

@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'modules';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { signUpAsync } from 'modules/signUp';
+import { goToHome } from 'modules/user';
 
 export default function useSignUp() {
   const [form, setForm] = useState({
@@ -10,6 +11,7 @@ export default function useSignUp() {
     password: '',
     passwordConfirm: '',
   });
+  const [error, setError] = useState<string | null>(null);
   const signUpResponse = useSelector(
     (state: RootState) => state.signUp.signUpResponse
   );
@@ -28,9 +30,17 @@ export default function useSignUp() {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     const { name, email, password, passwordConfirm } = form;
+    if ([name, email, password, passwordConfirm].includes('')) {
+      setError('빈 칸을 모두 입력하세요.');
+      return;
+    }
     if (password !== passwordConfirm) {
-      // TODO: 오류 처리
-      console.log('패스워드 불일치');
+      setError('비밀번호가 일치하지 않습니다.');
+      setForm({
+        ...form,
+        password: '',
+        passwordConfirm: '',
+      });
       return;
     }
     dispatch(
@@ -56,20 +66,25 @@ export default function useSignUp() {
   useEffect(() => {
     const { error, data } = signUpResponse;
     if (error) {
-      console.log('오류 발생');
-      console.log(signUpResponse.error);
+      // TODO : status 409, 이미 존재하는 email 처리
+      // 기타이유
+      setError('회원가입 실패');
       return;
     }
     if (data) {
       console.log('회원가입 성공');
       console.log(data);
+      // TODO : 여기서 userMe 호출 해서 바로 로그인 처리
+      dispatch(goToHome());
     }
-  }, [signUpResponse]);
+  }, [dispatch, signUpResponse]);
+
+  // TODO: login 처럼 userMe 성공시 useEffect로 체크해서 홈화면으로 이동하도록 수정
 
   return {
     form,
-    signUpResponse,
     onChange,
     onSubmit,
+    error,
   };
 }
