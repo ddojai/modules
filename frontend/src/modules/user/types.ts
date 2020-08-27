@@ -9,5 +9,4 @@ export type UserAction = ActionType<typeof actions>;
 // 상태를 위한 타입 선언
 export type UserState = {
   userMeResponse: AsyncState<UserMeSuccess, Error>;
-  tempUser: UserMeSuccess | null;
 };

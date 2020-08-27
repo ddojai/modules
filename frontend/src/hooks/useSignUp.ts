@@ -79,7 +79,7 @@ export default function useSignUp() {
     }
   }, [dispatch, signUpResponse]);
 
-  // TODO: login 처럼 userMe 성공시 useEffect로 체크해서 홈화면으로 이동하도록 수정
+  // TODO: login 처럼 userMe 성공시 useEffect로 체크해서 홈화면으로 이동 및 localstorage 저장하도록 수정
 
   return {
     form,

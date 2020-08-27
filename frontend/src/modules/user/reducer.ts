@@ -6,17 +6,17 @@ import {
   USER_ME_SUCCESS,
   USER_ME_ERROR,
   TEMP_SET_USER,
+  LOGOUT,
 } from './actions';
 
 const initialState: UserState = {
   userMeResponse: asyncState.initial(),
-  tempUser: null
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
   [TEMP_SET_USER]: (state, action) => ({
     ...state,
-    tempUser: action.payload
+    userMeResponse: asyncState.success(action.payload),
   }),
   [USER_ME]: (state) => ({
     ...state,
@@ -29,6 +29,10 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [USER_ME_ERROR]: (state, action) => ({
     ...state,
     userMeResponse: asyncState.error(action.payload),
+  }),
+  [LOGOUT]: (state) => ({
+    ...state,
+    userMeResponse: asyncState.initial(),
   }),
 });
 

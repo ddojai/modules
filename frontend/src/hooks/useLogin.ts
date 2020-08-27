@@ -53,6 +53,11 @@ export default function useLogin() {
     if (data) {
       console.log('로그인 성공');
       dispatch(userAsync.request(data.accessToken));
+      try {
+        localStorage.setItem('accessToken', data.accessToken);
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
   }, [dispatch, loginResponse]);
 
@@ -60,6 +65,11 @@ export default function useLogin() {
     const { data } = userMeResponse;
     if (data) {
       dispatch(goToHome());
+      try {
+        localStorage.setItem('user', JSON.stringify(data));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
   }, [dispatch, userMeResponse]);
 

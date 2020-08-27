@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Button, makeStyles, Link } from '@material-ui/core';
+import useHeader from 'hooks/useHeader';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -20,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  userInfo: {
+    fontWeight: 800,
+    marginRight: '1rem',
+  },
   spacer: {
     height: '4rem',
   },
@@ -27,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
   const classes = useStyles();
+  const { userMeResponse, onLogout } = useHeader();
+  const { data } = userMeResponse;
 
   return (
     <>
@@ -34,10 +41,23 @@ function Header() {
         <Link className={classes.logo} href="/">
           Financial Independence
         </Link>
-        <Box className={classes.right}>
-          <Button variant="contained" href="/login">Login</Button>
-          <Button variant="contained" href="/signup">SignUp</Button>
-        </Box>
+        {data ? (
+          <Box className={classes.right}>
+            <Box className={classes.userInfo}>{data.email}</Box>
+            <Button variant="contained" onClick={onLogout}>
+              로그아웃
+            </Button>
+          </Box>
+        ) : (
+          <Box className={classes.right}>
+            <Button variant="contained" href="/login">
+              Login
+            </Button>
+            <Button variant="contained" href="/signup">
+              SignUp
+            </Button>
+          </Box>
+        )}
       </Box>
       <Box className={classes.spacer} />
     </>
