@@ -50,7 +50,7 @@ const useStyles = makeStyles({
 
 function Login(props) {
   const classes = useStyles();
-  const error = props.location.state.error;
+  const error = props.location.state && props.location.state.error;
 
   return (
     <Box className={classes.loginContainer}>
