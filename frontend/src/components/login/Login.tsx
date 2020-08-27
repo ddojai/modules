@@ -3,6 +3,7 @@ import LoginForm from './LoginForm';
 import { Link } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { makeStyles, colors, Box, Typography } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 const useStyles = makeStyles({
   loginContainer: {
@@ -47,14 +48,16 @@ const useStyles = makeStyles({
   },
 });
 
-function Login() {
+function Login(props) {
   const classes = useStyles();
+  const error = props.location.state.error;
 
   return (
     <Box className={classes.loginContainer}>
       <Box className={classes.loginContent}>
         <Typography variant="h5">Login to Social</Typography>
         <SocialLogin />
+        {error && <Alert severity="error">{error}</Alert>}
         <Box className={classes.orSeparator}>
           <Box component="span" className={classes.orText}>
             OR

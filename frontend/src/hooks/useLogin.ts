@@ -3,6 +3,7 @@ import { RootState } from 'modules';
 import { loginAsync } from 'modules/login';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { userAsync, goToHome } from 'modules/user';
+import { ACCESS_TOKEN } from 'constant';
 
 export default function useLogin() {
   const [form, setForm] = useState({
@@ -54,7 +55,7 @@ export default function useLogin() {
       console.log('로그인 성공');
       dispatch(userAsync.request(data.accessToken));
       try {
-        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem(ACCESS_TOKEN, data.accessToken);
       } catch (e) {
         console.log('localStorage is not working');
       }
@@ -65,11 +66,6 @@ export default function useLogin() {
     const { data } = userMeResponse;
     if (data) {
       dispatch(goToHome());
-      try {
-        localStorage.setItem('user', JSON.stringify(data));
-      } catch (e) {
-        console.log('localStorage is not working');
-      }
     }
   }, [dispatch, userMeResponse]);
 

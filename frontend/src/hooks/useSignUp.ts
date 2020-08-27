@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'modules';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { signUpAsync } from 'modules/signUp';
-import { goToHome } from 'modules/user';
+import { goToLogin } from 'modules/user';
 
 export default function useSignUp() {
   const [form, setForm] = useState({
@@ -75,7 +75,7 @@ export default function useSignUp() {
       console.log('회원가입 성공');
       console.log(data);
       // TODO : 여기서 userMe 호출 해서 바로 로그인 처리
-      dispatch(goToHome());
+      dispatch(goToLogin());
     }
   }, [dispatch, signUpResponse]);
 

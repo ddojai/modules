@@ -10,7 +10,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './modules';
 import { createBrowserHistory } from 'history';
-import { tempSetUser, userAsync } from 'modules/user';
+import { userAsync } from 'modules/user';
+import { ACCESS_TOKEN } from 'constant';
 
 const customHistory = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware({
@@ -28,11 +29,9 @@ function loadUser() {
   // App 컴포넌트에서 처리할 경우 컴포넌트가 한번 렌더링 된 이후에 실행
   // 깜박임 현상이 생길 수 있음
   try {
-    const user = localStorage.getItem('user');
-    const accessToken = localStorage.getItem('accessToken');
-    if (!user || !accessToken) return; // 로그인 상태가 아니라면 아무것도 안함
-
-    store.dispatch(tempSetUser(JSON.parse(user)));
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    // 로그인 상태가 아니라면 아무것도 안함
+    if (!accessToken) return;
     // 정말 로그인 상태인지 검증
     store.dispatch(userAsync.request(accessToken));
   } catch (e) {

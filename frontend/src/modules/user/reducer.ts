@@ -5,7 +5,6 @@ import {
   USER_ME,
   USER_ME_SUCCESS,
   USER_ME_ERROR,
-  TEMP_SET_USER,
   LOGOUT,
 } from './actions';
 
@@ -14,10 +13,6 @@ const initialState: UserState = {
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
-  [TEMP_SET_USER]: (state, action) => ({
-    ...state,
-    userMeResponse: asyncState.success(action.payload),
-  }),
   [USER_ME]: (state) => ({
     ...state,
     userMeResponse: asyncState.load(),
