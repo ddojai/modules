@@ -1,19 +1,16 @@
 dependencies {
-    // Spring-Security
     compile('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.mariadb.jdbc:mariadb-java-client')
 
-    compile group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.1.2.RELEASE'
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
     // board
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
 
-//    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
-//    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.2.RELEASE'
 //    compile('com.h2database:h2')
 //    testCompile('org.springframework.security:spring-security-test')
 }
