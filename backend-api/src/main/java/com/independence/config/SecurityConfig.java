@@ -59,17 +59,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   */
   @Bean
   public HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository() {
-    // Spring OAuth2는 기본적으로 HttpSessionOAuth2AuthorizationRequestRepository를 사용해 Authorization
-    // Request를 저장합니다.
-    // JWT를 사용하므로, Session에 이를 저장할 필요가 없습니다.
-    // 따라서 custom으로 구현한 HttpCookieOAuth2AuthorizationRequestRepository를 사용해 Authorization
-    // Request를 Based64 encoded cookie에 저장합니다
     return new HttpCookieOAuth2AuthorizationRequestRepository();
   }
 
   @Override
   public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-    // Authorization에서 사용할 userDetailService와 password Encoder를 정의합니다.
     authenticationManagerBuilder
       .userDetailsService(customUserDetailsService)
       .passwordEncoder(passwordEncoder());
@@ -77,7 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-    // password를 저장할때 사용할 encoding algorithm을 정의. 가장 많이사용되는 BCrypt 방식을 사용
     return new BCryptPasswordEncoder();
   }
 
@@ -91,11 +84,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .cors() // cors을 허용
+      .cors()
       .and()
       .sessionManagement()
-      .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // session Creation Policy를
-      // STATELESS로 정의해 session을 사용하지 않겠다
+      .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
       .and()
       .csrf()
       .disable()
@@ -104,8 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .httpBasic()
       .disable()
       .exceptionHandling()
-      .authenticationEntryPoint(new RestAuthenticationEntryPoint()) // 사용자가 authentication 없이
-      // protected resource에 접근하는 경우에 invoked 되는 entry point를 정의합니다.
+      .authenticationEntryPoint(new RestAuthenticationEntryPoint()) // authentication 없이 접근하는 경우
       .and()
       .authorizeRequests()  // URL 별 권한 관리를 설정하는 옵션의 시작점. 선언되야 antMatchers 옵션 사용 가능
       .antMatchers("/", // 권한 관리 대상을 지정하는 옵션. URL, HTTP 메소드 별로 관리 가능
@@ -128,9 +119,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizationEndpoint() // oauth 로그인시 접근할 end point를 정의합니다
       .baseUri("/oauth2/authorize")
       .authorizationRequestRepository(cookieAuthorizationRequestRepository())
-      .and()
-      .redirectionEndpoint()
-      .baseUri("/oauth2/callback/*")
       .and()
       .userInfoEndpoint() // Oauth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정들을 담당
       .userService(customOAuth2UserService) // 소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록.
