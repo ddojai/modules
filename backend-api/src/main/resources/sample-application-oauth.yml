@@ -1,0 +1,19 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId:
+            clientSecret:
+            scope:
+          facebook:
+            clientId:
+            clientSecret:
+            scope:
+app:
+  auth:
+    tokenSecret:
+    tokenExpirationMsec:
+  oauth2:
+    authorizedRedirectUris:

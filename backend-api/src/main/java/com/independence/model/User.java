@@ -1,20 +1,21 @@
 package com.independence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Getter
-@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "users", uniqueConstraints = {
   @UniqueConstraint(columnNames = "email")
 })
-public class User {
+public class User extends BaseTimeEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -40,4 +41,22 @@ public class User {
   private AuthProvider provider;
 
   private String providerId;
+
+  @Builder
+  public User(String name, String email, AuthProvider provider, String providerId, String imageUrl
+    , String password) {
+    this.name = name;
+    this.email = email;
+    this.provider = provider;
+    this.providerId = providerId;
+    this.imageUrl = imageUrl;
+    this.password = password;
+  }
+
+  public User update(String name, String imageUrl) {
+    this.name = name;
+    this.imageUrl = imageUrl;
+
+    return this;
+  }
 }

@@ -4,8 +4,15 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.mariadb.jdbc:mariadb-java-client')
 
+    compile('org.projectlombok:lombok')
+    annotationProcessor("org.projectlombok:lombok")
+
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 
     // board
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
