@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Box, colors, Typography } from '@material-ui/core';
 import SignUpForm from './SignUpForm';
-import SocialSignUp from './SocialSignUp';
+import SocialLogin from 'components/common/SocialLogin';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -49,7 +49,7 @@ function SignUp() {
     <Box className={classes.signUpContainer}>
       <Box className={classes.signUpContent}>
         <Typography variant="h5">SignUp with Social</Typography>
-        <SocialSignUp />
+        <SocialLogin type="signUp"/>
         <Box className={classes.orSeparator}>
           <Box component="span" className={classes.orText}>
             OR

@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import { Link } from 'react-router-dom';
-import SocialLogin from './SocialLogin';
+import SocialLogin from 'components/common/SocialLogin';
 import { makeStyles, colors, Box, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
@@ -56,7 +56,7 @@ function Login(props) {
     <Box className={classes.loginContainer}>
       <Box className={classes.loginContent}>
         <Typography variant="h5">Login to Social</Typography>
-        <SocialLogin />
+        <SocialLogin type="login"/>
         {error && <Alert severity="error">{error}</Alert>}
         <Box className={classes.orSeparator}>
           <Box component="span" className={classes.orText}>

@@ -39,7 +39,7 @@ function Header() {
     <>
       <Box className={classes.header}>
         <Link className={classes.logo} href="/">
-          Financial Independence
+          Open Exercise
         </Link>
         {data ? (
           <Box className={classes.right}>
