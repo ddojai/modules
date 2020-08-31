@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'modules';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { signUpAsync } from 'modules/signUp';
-import { goToLogin } from 'modules/user';
+import { goToLogin, goToHome } from 'modules/user';
 
 export default function useSignUp() {
   const [form, setForm] = useState({
@@ -14,6 +14,9 @@ export default function useSignUp() {
   const [error, setError] = useState<string | null>(null);
   const signUpResponse = useSelector(
     (state: RootState) => state.signUp.signUpResponse
+  );
+  const userMeResponse = useSelector(
+    (state: RootState) => state.user.userMeResponse
   );
   const dispatch = useDispatch();
 
@@ -75,11 +78,17 @@ export default function useSignUp() {
       console.log('회원가입 성공');
       console.log(data);
       // TODO : 여기서 userMe 호출 해서 바로 로그인 처리
+      // TODO: login 처럼 userMe 성공시 useEffect로 체크해서 홈화면으로 이동 및 localstorage 저장하도록 수정
       dispatch(goToLogin());
     }
   }, [dispatch, signUpResponse]);
 
-  // TODO: login 처럼 userMe 성공시 useEffect로 체크해서 홈화면으로 이동 및 localstorage 저장하도록 수정
+  useEffect(() => {
+    const { data } = userMeResponse;
+    if (data) {
+      dispatch(goToHome());
+    }
+  }, [dispatch, userMeResponse]);
 
   return {
     form,

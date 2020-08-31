@@ -29,6 +29,7 @@ function LoginForm() {
         autoComplete="email"
         name="email"
         placeholder="Email"
+        type="email"
         onChange={onChange}
         value={form.email}
       />
