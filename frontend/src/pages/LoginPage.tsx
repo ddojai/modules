@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import Login from 'components/login/Login';
+import Login, { LoginProps } from 'components/login/Login';
 import Header from 'components/common/Header';
 
-function LoginPage(props) {
+function LoginPage(props: LoginProps) {
   return (
     <Container>
       <Header />

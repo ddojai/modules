@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userAsync, goToHome } from 'modules/user';
 import { RootState } from 'modules';
 import { ACCESS_TOKEN } from 'constant';
+import { OAuth2Props } from 'components/oauth2/OAuth2';
 
-export default function useOAuth2(props: { location: { search: string } }) {
+export default function useOAuth2(props: OAuth2Props) {
   const [token, setToken] = useState('');
   const [error, setError] = useState('');
   const userMeResponse = useSelector(

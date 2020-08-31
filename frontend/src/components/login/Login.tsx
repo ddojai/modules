@@ -48,7 +48,15 @@ const useStyles = makeStyles({
   },
 });
 
-function Login(props) {
+export interface LoginProps {
+  location: {
+    state: {
+      error: string;
+    };
+  };
+}
+
+function Login(props: LoginProps) {
   const classes = useStyles();
   const error = props.location.state && props.location.state.error;
 
@@ -56,7 +64,7 @@ function Login(props) {
     <Box className={classes.loginContainer}>
       <Box className={classes.loginContent}>
         <Typography variant="h5">Login to Social</Typography>
-        <SocialLogin type="login"/>
+        <SocialLogin type="login" />
         {error && <Alert severity="error">{error}</Alert>}
         <Box className={classes.orSeparator}>
           <Box component="span" className={classes.orText}>
