@@ -9,18 +9,10 @@ spring:
 # local 환경
 ---
 spring:
-  profiles: local
-  datasource:
-    url: jdbc:mariadb://localhost:3306/financial?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
-    username: root
-    password: mariadb
-    driver-class-name: org.mariadb.jdbc.Driver
-#    initialization-mode: always
-#    data: classpath:data-h2.sql
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
-spring.profiles.include: oauth
+spring.profiles.include: oauth,datasource
