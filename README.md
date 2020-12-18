@@ -1,4 +1,4 @@
-# open-exercise
+# about-corporation
 
 ## frontend
 
